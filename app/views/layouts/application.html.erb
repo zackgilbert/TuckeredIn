@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TuckeredIn</title>
+	<meta charset="utf-8" />
+	<title>Tuckered.In</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body class="index">
+	<header id="hd">
+		<div class="logo">
+			<div class="wrapper">
+				<h1><a href="/">Tuckered.In</a></h1>
+				<div class="right">
+					<ul>
+						<li>
+							<% if current_user %>
+							  Welcome <%= current_user.name %>!
+							  <%= link_to "Sign Out", signout_path %>
+							<% else %>
+							  <%= link_to "Sign in with Twitter", "/auth/twitter" %>
+							<% end %>
+						</li>
+						<li><a href="http://rocodev.com">RocoDev</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<nav>
+			<div class="wrapper">
+				<div class="top-menu">
+					<ul>
+						<li>Everything</li>
+						<li>Videos</li>
+						<li>Discussions</li>
+						<li>Gifts</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="wrapper">
+		<div id="bd">
+			<div class="wrapper">
+				<div id="masonry">
+				
 <%= yield %>
 
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
