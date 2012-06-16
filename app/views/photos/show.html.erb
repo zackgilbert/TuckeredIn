@@ -1,6 +1,6 @@
-
-  <div class="item">
-    <%= link_to(image_tag(photo.image_url(:thumb)), photo) %>
+	
+  <div>
+    <%= image_tag(@photo.image_url) %>
     <h2 class="lipsum"></h2>
     <!--<div class="comments">
       2
@@ -26,4 +26,9 @@
         <p>Illum adipisci delectus tempore exercitationem ducimus dolorum maxime nesciunt officiis</p>
       </div>
     </div>-->
+		<div class="utilities">
+			<% if current_user.is_admin? %>
+	    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-destroy" %>
+			<% end %>
+		</div>
   </div>
