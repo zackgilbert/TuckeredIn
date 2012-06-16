@@ -23,6 +23,9 @@ group :assets do
 	gem 'compass'
 	gem 'compass-rails'
 	gem 'compass-susy-plugin'
+	gem 'less-rails'
+	gem 'twitter-bootstrap-rails'
+	gem 'bootstrap-sass', '~> 2.0.3'
 end
 
 gem 'jquery-rails'

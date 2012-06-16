@@ -1,12 +1,12 @@
 
   <div class="item">
-    <img height="210px" src="http://placehold.it/192x210px/9a7d36/8e3276&text=quo" width="192px" alt="" />
+    <%= link_to(image_tag(photo.image_url(:thumb)), photo.image_url) %>
     <h2 class="lipsum"></h2>
-    <div class="comments">
+    <!--<div class="comments">
       2
       comments
-    </div>
-    <div class="chat">
+    </div>-->
+    <!--<div class="chat">
       <div class="chatbox">
         <img height="30px" src="http://placehold.it/30x30/4e5d32/b847f6&text=ut" width="30px" alt="" />
         <b>Cathleen Rich</b>
@@ -25,5 +25,10 @@
         <b>Caleb Norman</b>
         <p>Illum adipisci delectus tempore exercitationem ducimus dolorum maxime nesciunt officiis</p>
       </div>
-    </div>
+    </div>-->
+		<div class="utilities">
+			<% if current_user.is_admin? %>
+	    <%= link_to 'Delete', photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-destroy" %>
+			<% end %>
+		</div>
   </div>

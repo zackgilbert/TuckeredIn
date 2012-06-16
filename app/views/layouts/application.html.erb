@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Tuckered.In</title>
+	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -16,13 +16,12 @@
 					<ul>
 						<li>
 							<% if current_user %>
-							  Welcome <%= current_user.name %>!
+							  Welcome, <%= current_user.name %>!
 							  <%= link_to "Sign Out", signout_path %>
 							<% else %>
-							  <%= link_to "Sign in with Twitter", "/auth/twitter" %>
+							  <%= link_to "Login with Twitter", "/auth/twitter" %>
 							<% end %>
 						</li>
-						<li><a href="http://rocodev.com">RocoDev</a></li>
 					</ul>
 				</div>
 			</div>
@@ -31,21 +30,31 @@
 			<div class="wrapper">
 				<div class="top-menu">
 					<ul>
-						<li>Everything</li>
-						<li>Videos</li>
-						<li>Discussions</li>
-						<li>Gifts</li>
+						<li><%= link_to "Submit", new_photo_path %></li>
+						<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="TuckeredIn">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+		<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
+		<div class="alert">
+			<a class="close" data-dismiss="alert" href="#">&times;</a>
+		  <%= alert %>
+		</div>
+		<% elsif notice %>
+		<div class="alert alert-success">
+			<a class="close" data-dismiss="alert" href="#">&times;</a>
+		 	<%= notice %>
+		</div>
+		<% end %>
 	</header>
 	<div class="wrapper">
 		<div id="bd">
 			<div class="wrapper">
 				<div id="masonry">
 				
-<%= yield %>
+<%= content_for?(:content) ? yield(:content) : yield %> 
 
 				</div>
 			</div>
