@@ -13,9 +13,8 @@ CarrierWave.configure do |config|
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
 
     # non-fog way of storing with s3?
-    #config.root = Rails.root.join('tmp')
-    #config.cache_dir = 'carrierwave'
-
+    config.root = Rails.root.join('tmp')
+    config.cache_dir = 'carrierwave'
     #config.storage = :s3
     #config.s3_access_key_id = ENV['AWS_ACCESS_KEY_ID']
     #config.s3_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
