@@ -23,8 +23,11 @@ class PhotosController < ApplicationController
   
   # GET /submit
   def new    
-    redirect_to root_path && return if !current_user
-
+    if !current_user
+      redirect_to root_path, notice: "Sorry, but you must be logged in before you can make submissions."
+      return
+    end
+    
     @photo = Photo.new
 
     respond_to do |format|
