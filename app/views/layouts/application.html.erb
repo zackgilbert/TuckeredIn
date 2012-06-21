@@ -18,6 +18,7 @@
 							<% if current_user %>
 							  Welcome, <%= current_user.name %>!
 							  <%= link_to "Sign Out", signout_path %>
+								<!-- <%= current_user.to_yaml %> -->
 							<% else %>
 							  <%= link_to "Login with Twitter", "/auth/twitter" %>
 							<% end %>
