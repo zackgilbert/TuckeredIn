@@ -27,7 +27,7 @@
       </div>
     </div>-->
 		<div class="utilities">
-			<% if current_user.is_admin? %>
+			<% if current_user && current_user.is_admin? %>
 	    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-destroy" %>
 			<% end %>
 		</div>
