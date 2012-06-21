@@ -31,24 +31,26 @@
 				<div class="top-menu">
 					<ul>
 						<li><%= link_to "Submit", new_photo_path %></li>
-						<li><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.tuckered.in" data-via="zackgilbert">Tweet</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+						<li>
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.tuckered.in" data-text="OMG. This site is the cutest!" data-via="TuckeredIn">Tweet</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
-		<div class="alert">
-			<a class="close" data-dismiss="alert" href="#">&times;</a>
-		  <%= alert %>
-		</div>
-		<% elsif notice %>
-		<div class="alert alert-success">
-			<a class="close" data-dismiss="alert" href="#">&times;</a>
-		 	<%= notice %>
-		</div>
-		<% end %>
 	</header>
+	<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
+	<div class="alert">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	  <%= alert %>
+	</div>
+	<% elsif notice %>
+	<div class="alert alert-success">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	 	<%= notice %>
+	</div>
+	<% end %>
 	<div class="wrapper">
 		<div id="bd">
 			<div class="wrapper">
