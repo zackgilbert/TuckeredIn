@@ -1,43 +1,60 @@
-<h1>Submit a Photo</h1>
-
-<%= form_for(@photo, :html => { :class => "well form-inline", :multipart => true }) do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
-
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-	<div>
-  	<%= f.hidden_field :user_id, :value => current_user.id %>
-  </div>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body class="submit">
 	
-	<div class="control-group">
-		<%= f.file_field :image %>
-	</div>
-	
-	<div class="control-group">
-		<%= f.label :remote_image_url, "or image URL", :class => 'control-label' %>
-	  <div class="controls">
-			<%= f.text_field :remote_image_url %>
-		</div>
-	</div>
-	
-	<div class="control-group">
-		<%= f.label :source_url, "Source URL", :class => 'control-label' %>
-	  <div class="controls">
-			<%= f.text_field :source_url %>
-		</div>
-	</div>
+	<div style="width: 400px; margin: auto;">
+		
+		<h3 style="text-align: center; font-size: 28px; margin-bottom: 10px; margin-top: -100px;">Submit a Photo</h2>
 
-	<div class="form-actions">
-		<%= f.submit "Submit", :class => 'btn btn-primary' %>
-		<%= link_to "Cancel", root_path, :class => 'btn' %>
-	</div>
+		<%= form_for(@photo, :html => { :multipart => true }) do |f| %>
+		  <% if @photo.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
 
-<% end %>
+		      <ul>
+		      <% @photo.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+			<div>
+		  	<%= f.hidden_field :user_id, :value => current_user.id %>
+		  </div>
+
+			<!--<div class="control-group">
+				<%= f.file_field :image %>
+			</div>-->
+
+			<div class="control-group">
+				<%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
+			  <div class="controls">
+					<%= f.text_field :remote_image_url %>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<%= f.label :source_url, "Source URL", :class => 'control-label' %>
+			  <div class="controls">
+					<%= f.text_field :source_url %>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<%= f.submit "Submit", :class => 'btn btn-primary' %>
+				<a href="javascript:;" onclick="window.close();" class="btn">Cancel</a>
+			</div>
+
+		<% end %>
+		
+	</div>
+				
+</body>
+</html>

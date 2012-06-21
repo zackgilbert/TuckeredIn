@@ -29,9 +29,11 @@ class PhotosController < ApplicationController
     end
     
     @photo = Photo.new
+    @photo.remote_image_url = params[:media] if params[:media]
+    @photo.source_url = params[:url] if params[:url]
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: false } # new.html.erb
       #format.json { render json: @photo }
     end
   end
@@ -47,7 +49,7 @@ class PhotosController < ApplicationController
       @photo.approved_at = Time.now if current_user.is_admin?
 
       if @photo.save
-        format.html { redirect_to root_path, notice: 'Your photo was successfully uploaded.' }
+        format.html { render layout: false }#redirect_to root_path, notice: 'Your photo was successfully uploaded.' }
         format.json { render json: @photo, status: :created, location: @photo }
       else
         format.html { render action: "new" }
