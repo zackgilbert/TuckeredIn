@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
 
   # GET /
   def index
-    @photos = Photo.all
+    @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC")
     
     respond_to do |format|
       format.html # index.html.erb
