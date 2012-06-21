@@ -34,3 +34,4 @@ gem "rmagick"
 gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'omniauth-twitter'
+gem 'rails_admin'

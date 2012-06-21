@@ -1,5 +1,7 @@
 TuckeredIn::Application.routes.draw do
   
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   match "/dev_login" => "sessions#dev_login"
   match "/login" => redirect("/auth/twitter")
   match "/auth/:provider/callback" => "sessions#create"
