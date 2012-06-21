@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   end
   
   def is_admin?
+    return true if ["Zack Gilbert"].include? self.name
     ["zackgilbert", "kelseylk"].include? self.username
   end
 
