@@ -10,6 +10,16 @@ class PhotosController < ApplicationController
     end
   end
   
+  # GET /pending
+  def pending
+    @photos = Photo.where("approved_at IS NULL").order("created_at DESC")
+    
+    respond_to do |format|
+      format.html { render action: :index }
+      format.json { render json: @photos }
+    end
+  end
+  
   # GET /photos/1
   # GET /photos/1.json
   def show

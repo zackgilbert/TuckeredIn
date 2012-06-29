@@ -14,6 +14,8 @@ TuckeredIn::Application.routes.draw do
   get "/photos/:id" => "photos#show", :as => "photo"
   delete "/photos/:id" => "photos#destroy"#, :as => "photos"
   
+  get "/pending" => "photos#pending", :as => 'pending'
+  
   root :to => 'photos#index'
 
 end
