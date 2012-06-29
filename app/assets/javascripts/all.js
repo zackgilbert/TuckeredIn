@@ -16,8 +16,11 @@ function resort(){
 }
 
 $(function(){
-  initLayout();
-  resort();
+	// delay for masonry to load.
+	setTimeout(function() {
+		initLayout();
+		resort();		
+	}, 500);	
 });
 
 $(window).resize(function(){

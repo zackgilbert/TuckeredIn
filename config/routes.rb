@@ -6,6 +6,8 @@ TuckeredIn::Application.routes.draw do
   match "/login" => redirect("/auth/twitter")
   match "/auth/:provider/callback" => "sessions#create"
   match "/logout" => "sessions#destroy", :as => :signout
+
+  get "/upload" => "photos#new", :as => 'upload'
   
   get "/submit" => "photos#new", :as => 'new_photo'
   post "/submit" => "photos#create", :as => 'photos'

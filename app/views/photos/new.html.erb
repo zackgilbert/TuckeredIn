@@ -29,16 +29,21 @@
 		  	<%= f.hidden_field :user_id, :value => current_user.id %>
 		  </div>
 
-			<!--<div class="control-group">
-				<%= f.file_field :image %>
-			</div>-->
-
+			<% if @from_cuddlet %>
 			<div class="control-group">
 				<%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
 			  <div class="controls">
 					<%= f.text_field :remote_image_url %>
 				</div>
 			</div>
+			<% else %>
+			<div class="control-group">
+				<%= f.label :image, "Upload Image", :class => 'control-label' %>
+				<div class="controls">
+					<%= f.file_field :image %>
+				</div>
+			</div>
+			<% end %>
 
 			<div class="control-group">
 				<%= f.label :source_url, "Source URL", :class => 'control-label' %>

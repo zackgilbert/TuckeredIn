@@ -5,6 +5,11 @@
 	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+	<meta property="og:title" content="Tuckered.In" />
+	<meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.tuckered.in" />
+	<!--<meta property="og:image" content="http://www.tuckered.in/images/tuckeredin_screenshot.jpg" />-->
+	<meta property="og:site_name" content="Tuckered.In" />
 </head>
 <body class="index">
 	<header id="hd">
@@ -17,7 +22,6 @@
 							<% if current_user %>
 							  Welcome, <%= current_user.name %>!
 							  <%= link_to "Sign Out", signout_path %>
-								<!-- <%= current_user.to_yaml %> -->
 							<% else %>
 							  <%= link_to "Login with Twitter", "/auth/twitter" %>
 							<% end %>
@@ -31,6 +35,7 @@
 				<div class="top-menu">
 					<ul>
 						<% if current_user && current_user.is_admin? %>
+						<li><a href="javascript:;" onclick="window.open('<%= upload_path %>','pin'+(new Date).getTime(),'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=450,height=300,left=0,top=0');">Upload</a></li>
 						<li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
 						<% else %>
 						<!--<li>
@@ -65,6 +70,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="media-overlay"></di>
+	<div id="media-view"></div>
+	
   <%= javascript_include_tag "application" %>
 	<script type="text/javascript">
 
