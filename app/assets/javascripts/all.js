@@ -20,7 +20,7 @@ $(function(){
 	setTimeout(function() {
 		initLayout();
 		resort();		
-	}, 500);	
+	}, 100);	
 });
 
 $(window).resize(function(){

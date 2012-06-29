@@ -15,6 +15,10 @@
 	<header id="hd">
 		<div class="logo">
 			<div class="wrapper">
+				<div class="left">
+					<ul>
+					</ul>
+				</div>
 				<h1><a href="/">Tuckered.In</a></h1>
 				<div class="right">
 					<ul>
@@ -26,14 +30,6 @@
 							  <%= link_to "Login with Twitter", "/auth/twitter" %>
 							<% end %>
 						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<nav>
-			<div class="wrapper">
-				<div class="top-menu">
-					<ul>
 						<% if current_user && current_user.is_admin? %>
 						<li><a href="javascript:;" onclick="window.open('<%= upload_path %>','pin'+(new Date).getTime(),'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=450,height=300,left=0,top=0');">Upload</a></li>
 						<li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
@@ -46,7 +42,7 @@
 					</ul>
 				</div>
 			</div>
-		</nav>
+		</div>
 	</header>
 	<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
 	<div class="alert">

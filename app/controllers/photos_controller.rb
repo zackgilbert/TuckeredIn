@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { }#render layout: false } # show.html.erb
       format.json { render json: @photo }
     end
   end
@@ -29,8 +29,8 @@ class PhotosController < ApplicationController
     end
     
     @photo = Photo.new
-    @photo.remote_image_url = params[:media] if params[:media]
-    @photo.source_url = params[:url] if params[:url]
+    @photo.remote_image_url = h(params[:media]) if params[:media]
+    @photo.source_url = h(params[:url]) if params[:url]
     @from_cuddlet = true if request.fullpath == 'upload'
 
     respond_to do |format|
