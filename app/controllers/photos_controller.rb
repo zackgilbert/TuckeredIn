@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
     @photo.source_url = params[:url] if params[:url]
     
     @from_cuddlet = false
-    @from_cuddlet = true if request.fullpath == '/submit'
+    @from_cuddlet = true if request.fullpath[0...7] == '/submit'
 
     respond_to do |format|
       format.html { render layout: false } # new.html.erb
