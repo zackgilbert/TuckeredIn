@@ -29,9 +29,11 @@ class PhotosController < ApplicationController
     end
     
     @photo = Photo.new
-    @photo.remote_image_url = h(params[:media]) if params[:media]
-    @photo.source_url = h(params[:url]) if params[:url]
-    @from_cuddlet = true if request.fullpath == 'upload'
+    @photo.remote_image_url = params[:media] if params[:media]
+    @photo.source_url = params[:url] if params[:url]
+    
+    @from_cuddlet = false
+    @from_cuddlet = true if request.fullpath == '/submit'
 
     respond_to do |format|
       format.html { render layout: false } # new.html.erb
