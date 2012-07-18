@@ -5,6 +5,17 @@
 				<img src="<%= @photo.image_url %>" class="photo">
 			</div>
 			<div class="span4">
+
+				<div class="utilities">
+					<% if current_user && current_user.is_admin? %>
+			    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-destroy" %>
+					<% end %>
+				</div>
+				
+				<div>
+					<pre><%= @photo.to_yaml %></pre>
+				</div>
+				
 				<!--<div class="profile clearfix">
 					<img src="http://images.instagram.com/profiles/profile_7792429_75sq_1340470686.jpg" class="avatar">
 					<h1 class="username">ryanbriones</h1>

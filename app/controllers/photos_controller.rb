@@ -34,7 +34,8 @@ class PhotosController < ApplicationController
   # GET /submit
   def new    
     if !current_user
-      redirect_to root_path, notice: "Sorry, but you must be logged in before you can make submissions."
+      redirect_away "/login"
+      #redirect_to root_path, notice: "Sorry, but you must be logged in before you can make submissions."
       return
     end
     
