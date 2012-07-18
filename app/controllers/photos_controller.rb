@@ -2,7 +2,11 @@ class PhotosController < ApplicationController
 
   # GET /
   def index
-    @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC")
+    if params[:tag]
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag])
+    else
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC")
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +32,15 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html { }#render layout: false } # show.html.erb
       format.json { render json: @photo }
+    end
+  end
+  
+  # GET /photos/1/edit
+  def edit
+    @photo = Photo.find(params[:id])
+
+    respond_to do |format|
+      format.html { }#render layout: false } # show.html.erb
     end
   end
   
@@ -58,6 +71,7 @@ class PhotosController < ApplicationController
     redirect_to root_path && return if !current_user
     
     @photo = Photo.new(params[:photo])
+    @photo.tag_list = params[:tags]
     
     respond_to do |format|
       @photo.approved_at = Time.now if current_user.is_admin?
@@ -68,6 +82,25 @@ class PhotosController < ApplicationController
       else
         format.html { render action: "new" }
         format.json { render json: @photo.errors, notice: :unprocessable_entity }
+      end
+    end
+  end
+  
+  # PUT /photos/:id
+  # PUT /photos/:id.json
+  def update
+    redirect_to root_path && return if !current_user
+    
+    @photo = Photo.find(params[:id])
+    @photo.tag_list = params[:tags]
+    
+    respond_to do |format|
+      if @photo.update_attributes(params[:photo])
+          format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -12,7 +12,7 @@
 		
 		<h3 style="text-align: center; font-size: 28px; margin-bottom: 20px; margin-top: -75px;">Submit a Photo</h2>
 
-		<%= form_for(@photo, :html => { :multipart => true }) do |f| %>
+		<%= form_for(@photo, :html => { :multipart => true, :class => 'form-horizontal' }) do |f| %>
 		  <% if @photo.errors.any? %>
 		    <div id="error_explanation">
 		      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
@@ -38,7 +38,6 @@
 			</div>
 			<% else %>
 			<div class="control-group">
-				<%= f.label :image, "Upload Image", :class => 'control-label' %>
 				<div class="controls">
 					<%= f.file_field :image %>
 				</div>
@@ -51,8 +50,15 @@
 					<%= f.text_field :source_url %>
 				</div>
 			</div>
+			
+			<div class="control-group">
+				<%= label_tag :tags, "Tags", :class => 'control-label' %>
+			  <div class="controls">
+					<%= text_field_tag :tags %>
+				</div>
+			</div>
 
-			<div class="form-actions">
+			<div>
 				<%= f.submit "Submit", :class => 'btn btn-primary' %>
 				<a href="javascript:;" onclick="window.close();" class="btn">Cancel</a>
 			</div>

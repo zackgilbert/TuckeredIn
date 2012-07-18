@@ -13,6 +13,8 @@ TuckeredIn::Application.routes.draw do
   post "/submit" => "photos#create", :as => 'photos'
   get "/photos/:id" => "photos#show", :as => "photo"
   delete "/photos/:id" => "photos#destroy"#, :as => "photos"
+  get "/photos/:id/edit" => "photos#edit", :as => "edit_photo"
+  put "/photos/:id" => "photos#update", :as => "update_photo"
   
   get "/pending" => "photos#pending", :as => 'pending'
   

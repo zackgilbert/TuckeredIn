@@ -3,5 +3,6 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   
   validates_presence_of :image
+  acts_as_taggable_on :tags
   
 end

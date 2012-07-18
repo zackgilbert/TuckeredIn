@@ -35,3 +35,4 @@ gem "carrierwave"
 gem "fog", "~> 1.3.1"
 gem 'omniauth-twitter'
 gem 'rails_admin'
+gem 'acts-as-taggable-on', '~> 2.3.1'

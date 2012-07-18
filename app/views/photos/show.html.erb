@@ -8,12 +8,21 @@
 
 				<div class="utilities">
 					<% if current_user && current_user.is_admin? %>
-			    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-destroy" %>
+			    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>
+			    <%= link_to 'Edit', edit_photo_path(@photo), :class => "btn btn-primary" %>
 					<% end %>
 				</div>
 				
 				<div>
 					<pre><%= @photo.to_yaml %></pre>
+				</div>
+				
+				<div>
+					<ul>
+						<% @photo.tag_counts.each do |tag| %>
+						<li><%= link_to tag.name, root_path(:tag => tag.name) %></li>
+						<% end %>
+					</ul>
 				</div>
 				
 				<!--<div class="profile clearfix">
