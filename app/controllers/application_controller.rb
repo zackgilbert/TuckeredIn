@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   # redirect somewhere that will eventually return back to here
   def redirect_away(*params)
-    session[:original_uri] = request.request_uri
+    session[:original_uri] = request.fullpath
     redirect_to(*params)
   end
 
