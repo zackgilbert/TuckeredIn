@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :twitter_uid, :username, :last_seen_at
 
+  acts_as_voter
+
   def self.create_with_omniauth(auth)
     #puts auth.inspect
     create! do |user|

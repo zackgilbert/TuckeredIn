@@ -5,4 +5,6 @@ class Photo < ActiveRecord::Base
   validates_presence_of :image
   acts_as_taggable_on :tags
   
+  acts_as_votable
+  
 end

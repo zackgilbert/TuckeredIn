@@ -116,5 +116,41 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # POST /photos/1/like
+  # POST /photos/1/like.json
+  def like
+    redirect_to root_path, notice: "You must be logged in to like photos." if !current_user
+    
+    @photo = Photo.find(params[:id])
+    
+    respond_to do |format|
+      if @photo.liked_by current_user
+        format.html { redirect_to @photo, notice: "Photo was successfully liked." }
+        format.json { render json: @photo.likes.size, status: :created, location: @photo }
+      else
+        format.html { redirect_to @photo, notice: "Our apologies, but we were unable to like this photo for you." }
+        format.json { render json: { errors: "Our apologies, but we were unable to like this photo for you." }, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  # DELETE /photos/1/unlike
+  # DELETE /photos/1/unlike.json
+  def unlike
+    redirect_to root_path, notice: "You must be logged in to unlike photos." if !current_user
+    
+    @photo = Photo.find(params[:id])
+    
+    respond_to do |format|
+      if @photo.unvote(:voter => current_user)
+        format.html { redirect_to @photo, notice: "Photo was successfully unliked." }
+        format.json { render json: @photo.likes.size }
+      else
+        format.html { redirect_to @photo, notice: "Our apologies, but we were unable to unlike this photo for you." }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 end

@@ -1,0 +1,22 @@
+
+	@font-face {
+		font-family: icons;
+		src: url('/foundation-icons-general.ttf');
+	}
+	
+	.utilities a {
+		font-size: 15px;
+	  font-weight: bold;
+		color:#24272a;
+		font-family:icons;
+		margin-left: 5px;
+		padding: 0px 3px 5px 4px;
+	}
+
+	.utilities a:hover{
+		color:#00b7fb;
+	}
+	
+	.utilities a.btn.selected {
+		color: DarkRed;
+	}

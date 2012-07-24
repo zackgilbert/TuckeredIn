@@ -11,16 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718023241) do
+ActiveRecord::Schema.define(:version => 20120723042608) do
 
   create_table "photos", :force => true do |t|
-    t.string   "image",       :null => false
+    t.string   "image",                             :null => false
     t.string   "source_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "user_id"
     t.datetime "approved_at"
+    t.integer  "cached_votes_total", :default => 0
+    t.integer  "cached_votes_up",    :default => 0
+    t.integer  "cached_votes_down",  :default => 0
   end
+
+  add_index "photos", ["cached_votes_down"], :name => "index_photos_on_cached_votes_down"
+  add_index "photos", ["cached_votes_total"], :name => "index_photos_on_cached_votes_total"
+  add_index "photos", ["cached_votes_up"], :name => "index_photos_on_cached_votes_up"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -60,5 +67,18 @@ ActiveRecord::Schema.define(:version => 20120718023241) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end

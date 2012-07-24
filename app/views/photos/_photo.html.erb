@@ -1,8 +1,18 @@
 
   <div class="item">
+		<% if current_user %>
+		<div class="utilities">
+			<% if current_user.voted_for? photo %>
+			<a href="<%= unlike_photo_path(photo) %>" class="like btn selected">b</a>
+			<% else %>
+			<a href="<%= like_photo_path(photo) %>" class="like btn">b</a>			
+			<% end %>
+		</div>
+		<% end %>
     <%= link_to(image_tag(photo.image_url(:thumb)), photo) %>
     <h2 class="lipsum"></h2>
     <div class="comments">
+			<span class="likes"><span class="value"><%= photo.likes.size %></span> Likes</span>
       <!--2
       comments-->
     </div>
@@ -14,11 +24,6 @@
         <b>Bart McKenna</b>
         onto
         <b>numquam</b>
-      </div>
-      <div class="chatbox">
-        <img height="30px" src="http://placehold.it/30x30/48e0fa/9cb413&text=id" width="30px" alt="" />
-        <b>Reid Watson</b>
-        <p>Doloribus nesciunt repudiandae animi corrupti rerum omnis voluptate adipisci odit sunt quasi</p>
       </div>
       <div class="chatbox">
         <img height="30px" src="http://placehold.it/30x30/306b89/4c57e3&text=ut" width="30px" alt="" />

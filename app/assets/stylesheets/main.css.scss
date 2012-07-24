@@ -78,6 +78,20 @@ a {
   background: white;
   @include box-shadow( 0 1px 3px rgba(34,25,25,0.4) );
   line-height: 1.5;
+
+	.utilities {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 202px;
+		height: 25px;
+		background-color: #30363A;
+		text-align: right;
+		opacity: 0.95;
+		padding: 10px;
+		display: none;
+	}
+	
   h2 {
     padding-top: 5px;
   }
@@ -117,6 +131,11 @@ a {
     }
   }
 }
+
+.item:hover .utilities {
+	display: block;
+}
+
 
 .item:after {
 	clear: both;
@@ -203,4 +222,10 @@ a {
 	margin-left: 0;
 	padding: 20px 0;
 	width: 300px;
+	
+	.utilities {
+		text-align: right; 
+		margin-bottom: 10px;
+	}
+	
 }

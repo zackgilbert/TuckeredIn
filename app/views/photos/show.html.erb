@@ -8,8 +8,13 @@
 
 				<div class="utilities">
 					<% if current_user && current_user.is_admin? %>
-			    <%= link_to 'Delete', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>
-			    <%= link_to 'Edit', edit_photo_path(@photo), :class => "btn btn-primary" %>
+			    <%= link_to 'y', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn" %>
+			    <%= link_to '[', edit_photo_path(@photo), :class => "btn btn" %>
+					<% end %>
+					<% if current_user.voted_for? @photo %>
+					<a href="<%= unlike_photo_path(@photo) %>" class="like btn selected">b</a>
+					<% else %>
+					<a href="<%= like_photo_path(@photo) %>" class="like btn">b</a>			
 					<% end %>
 				</div>
 				
@@ -23,6 +28,8 @@
 						<li><%= link_to tag.name, root_path(:tag => tag.name) %></li>
 						<% end %>
 					</ul>
+					
+					<span class="likes"><span class="value"><%= @photo.likes.size %></span> Likes</span>
 				</div>
 				
 				<!--<div class="profile clearfix">
