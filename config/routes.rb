@@ -21,5 +21,6 @@ TuckeredIn::Application.routes.draw do
   get "/pending" => "photos#pending", :as => 'pending'
   
   root :to => 'photos#index'
+  #root :to => 'pages#splash'
 
 end

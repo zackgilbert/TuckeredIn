@@ -5,6 +5,7 @@
 	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+	<link rel="author" href="/humans.txt" />
 	<meta property="og:title" content="Tuckered.In" />
 	<meta property="og:type" content="website" />
   <meta property="og:url" content="http://www.tuckered.in" />
@@ -71,18 +72,7 @@
 	<div id="media-view"></div>
 	
   <%= javascript_include_tag "application" %>
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-32824482-1']);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	</script>
+	<%= render :partial => 'shared/analytics' %>
+	
 </body>
 </html>

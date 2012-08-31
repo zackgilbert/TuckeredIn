@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title><%= content_for?(:title) ? yield(:title) : "tuckered.in - it's just so cute!" %></title>
+  <%= csrf_meta_tags %>
+	<meta property="og:title" content="tuckered.in" />
+	<meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.tuckered.in" />
+	<!--<meta property="og:image" content="http://www.tuckered.in/images/tuckeredin_screenshot.jpg" />-->
+	<meta property="og:site_name" content="tuckered.in" />
+	<meta name="description" content="It's just so cute!">
+	<link rel="author" href="/humans.txt" />
+
+	<meta name="viewport" content="width=device-width">
+	<link href='http://fonts.googleapis.com/css?family=Imprima' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Fredoka%20One' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="/assets/splash.css">
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+<!--[if lt IE 7]>
+	<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+
+	<div id="wrapper">
+		<div id="page">
+			<div id="carousel" class="clearfix">
+				<ul>
+					<li id="photo-1" class="circular-small"><img src="https://s3.amazonaws.com/tuckeredin/uploads/71/484571_291400084300231_195892189_n.jpg" alt="image" /></li>
+					<li id="photo-2" class="circular"><img src="https://s3.amazonaws.com/tuckeredin/uploads/8/enhanced-buzz-1206-1339243406-9.jpg" /></li>
+					<li id="photo-3" class="circular-small"><img src="https://s3.amazonaws.com/tuckeredin/uploads/13/sleeping_animals_10.jpg" alt="image" /></li>
+				</ul>
+			</div>
+			
+			<h1>OMG SO CUTE!</h1>
+			<% if @signed_up %>
+			<h2>thanks! we'll be in touch when we're ready to launch. :)</h2>
+			<% else %>
+			<h2>tuckered.in is launching soon.</h2>
+			
+			<form class="register" action="/" method="post">
+				<input type="text" name="email" value="register your email to get the inside scoop :)" class="reg-email" onclick="if (this.value == 'register your email to get the inside scoop :)') this.value = '';" /> <input type="submit" name="submit" value="GO!" class="btn-go" />
+			</form>
+			<% end %>
+			
+			<div id="social-container">
+				<ul>
+					<li><a href="http://twitter.com/tuckeredin" id="twitter"></a></li>
+					<li><a href="https://www.facebook.com/pages/TuckeredIn/391252914267589" id="facebook"></a></li>
+					<li><a href="mailto:contact@tuckered.in" id="email"></a></li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+
+<%= render :partial => 'shared/analytics' %>
+
+</body>
+</html>

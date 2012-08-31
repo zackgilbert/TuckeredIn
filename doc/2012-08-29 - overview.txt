@@ -1,0 +1,17 @@
+Tuckered.In Feature Outline:
+- Pinterest-like board of photos + videos.
+- Paginated, endless scroll. If not logged in, can only view 2 pages. Otherwise, prompts to login.
+- Login with Twitter.
+- Likes. And maybe comments?
+- Click to view individual/larger view + extra details (tags, source, etc) in modal, but also viewable by linking.
+- Full screen slideshow/screensaver mode.
+- Posts can be organized and searched by tags.
+- If logged in, can submit items that go to a queued board that must be approved before being added to site.
+- Some type of about us/contact page. But you probably wouldn't need to design this as it should just easily fit into the overall site/page design.
+
+Premium $6/year Subscription:
+- $1 goes to an animal charity/organization.
+- Sent a new photo by email/tweet every morning.
+- Ability to create their own board of their favorites.
+- Ability to view all archives.
+- No ads.
