@@ -6,11 +6,7 @@ $bg: #faf7f7;
 $color: #8c7e7e;
 
 body {
-  background: $bg - #050505;
-  font-family: "helvetica neue", sans-serif;
-  font-size: 13px;
-  color: #444;
-  padding-top: 100px;
+  padding-top: 65px;
 }
 
 a {
@@ -27,44 +23,62 @@ a {
   position: relative;
 }
 
-#hd {
-  background: $bg;
+header {
+	border-top: 10px solid #F03B3D;
+  background-image: url('/images/bg-sand.png');
   position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
-	height: 45px;
+	height: 52px;
   @include box-shadow(0 0 5px rgba(#000,.7));
-  .logo {
-    padding: 0;
-    h1 {
-      color: DarkRed;
-      margin: 10px auto 0px;
-      text-align: center;
-      font-size: 24px;
-      a {
-        @include link-colors(DarkRed);
-        @include unstyled-link;
-        text-shadow: 0 1px 0 white, 0 5px 10px rgba(#000, .125);
-      }
-    }
-    .right {
-      float: right;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-    ul {
-      font-weight: bold;
-      @extend .text-shadow;
-      li {
-        float: left;
-        padding: 5px 27px 0 14px;
-      }
+
+	.left {
+		float: left;
+		width: 200px;
+	}
+
+  h1 {
+    margin: 10px auto 0px;
+    text-align: center;
+		width: 132px;
+		height: 76px;
+		position: relative;
+		top: -10px;
+  }
+
+  .right {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  ul {
+    font-weight: bold;
+    @extend .text-shadow;
+    li {
+      float: left;
+      padding: 5px 27px 0 14px;
     }
   }
 }
+
+#title {
+	text-align: center;
+	border-top: 5px solid #ffffff;
+	background-image: url('/images/retina_dust_@2X.png');
+	background-repeat: repeat-x;
+	height: 90px;
+	padding-top: 20px;
+  @include box-shadow(0 0 5px rgba(#000,.7));
+
+	h2 {
+	}
+	span {
+	}	
+}
+
 #masonry {
   position: relative;
   margin: 0 auto;
@@ -229,4 +243,21 @@ a {
 		margin-bottom: 10px;
 	}
 	
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	border-top: 5px solid #fff;
+  background-image: url('/images/bg-sand.png');
+	text-align: center;
+	padding: 10px;
+	color: #C7B29C;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 24px;
+	font-family: Helvetica, Arial, sans-serif;
+	z-index: 100;
+	@include box-shadow(0 0 5px rgba(#000,.7));
 }
