@@ -2,15 +2,6 @@ class PhotosController < ApplicationController
 
   # GET /
   def index
-    unless current_user.present?
-      if params[:email].present? && email_is_valid?(params[:email])
-        SplashMailer.splash_signup(params[:email])
-        @signed_up = true
-      end
-      render "pages/splash", :layout => false
-      return
-    end
-    
     if params[:tag]
       @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag])
     else

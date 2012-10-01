@@ -1,0 +1,263 @@
+@import "compass";
+@include global-reset;
+
+
+$bg: #faf7f7;
+$color: #8c7e7e;
+
+body {
+  padding-top: 65px;
+}
+
+a {
+  @include link-colors(#369);
+}
+
+.text-shadow {
+  text-shadow: 0 1px 0 white;
+}
+
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+header {
+	border-top: 10px solid #F03B3D;
+  background-image: url('/images/bg-sand.png');
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+	height: 52px;
+  @include box-shadow(0 0 5px rgba(#000,.7));
+
+	.left {
+		float: left;
+		width: 200px;
+	}
+
+  h1 {
+    margin: 10px auto 0px;
+    text-align: center;
+		width: 132px;
+		height: 76px;
+		position: relative;
+		top: -10px;
+  }
+
+  .right {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  ul {
+    font-weight: bold;
+    @extend .text-shadow;
+    li {
+      float: left;
+      padding: 5px 27px 0 14px;
+    }
+  }
+}
+
+#title {
+	text-align: center;
+	border-top: 5px solid #ffffff;
+	background-image: url('/images/retina_dust_@2X.png');
+	background-repeat: repeat-x;
+	height: 90px;
+	padding-top: 20px;
+  @include box-shadow(0 0 5px rgba(#000,.7));
+
+	h2 {
+	}
+	span {
+	}	
+}
+
+#masonry {
+  position: relative;
+  margin: 0 auto;
+}
+.item {
+  width: 192px;
+  float: left;
+  padding: 15px 15px 0;
+  margin: 0 7px 15px;
+  font-size: 12px;
+  background: white;
+  @include box-shadow( 0 1px 3px rgba(34,25,25,0.4) );
+  line-height: 1.5;
+	position: relative;
+
+	.utilities {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 202px;
+		height: 25px;
+		background-color: #30363A;
+		text-align: right;
+		opacity: 0.95;
+		padding: 10px;
+		display: none;
+	}
+	
+  h2 {
+    padding-top: 5px;
+  }
+  .comments {
+    color: $color;
+    padding-bottom: 15px;
+  }
+  .chat {
+    background: #f2f0f0;
+    margin: 0 -15px;
+  }
+  .chatbox {
+    border-top: 1px solid white;
+    border-bottom: 1px solid rgba(#000,.1);
+    padding: 15px 15px;
+    padding-left: 50px;
+    @include pie-clearfix;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:first-child {
+      color: #b29c9c;
+      b {
+        color: #8c7e7e;
+      }
+    }
+    .flickrbombWrapper img {
+      margin: 0;
+    }
+    .flickrbombWrapper,
+    img {
+      margin-left: -35px;
+      float: left;
+    }
+    b {
+      font-weight: bold;
+    }
+  }
+}
+
+.item:hover .utilities {
+	display: block;
+}
+
+
+.item:after {
+	clear: both;
+	content: " ";
+	position: absolute;
+	display: block;
+	left: 0;
+	bottom: -14px;
+	width: 224px;
+	height: 14px;
+	background: url(/images/shadow.png);
+	visibility: visible;
+	opacity: .5;
+}
+
+#media-overlay {
+	cursor: pointer;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	opacity: .8;
+	background: black;
+}
+
+#media-view {
+	display: none;
+	position: fixed;
+	left: 50%;
+	margin-left: -480px;
+	width: 960px;
+	height: 640px;
+	z-index: 8020;
+	top: 40px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#media-view .close {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	font-size: 30px;
+}
+
+.close {
+	float: right;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 18px;
+	color: black;
+	text-shadow: 0 1px 0 white;
+	opacity: .2;
+	filter: alpha(opacity=20);
+}
+
+#photo-container {
+	width: 960px;
+	height: 640px;
+	margin: auto;
+}
+
+#photo-container .row {
+	margin-left: 0;
+	background: white;
+}
+
+#photo-container .span8 {
+	margin-left: 0;
+	width: 640px;
+}
+
+#photo-container .photo {
+	border: solid 20px white;
+	width: 600px;
+}
+
+#photo-container .span4 {
+	margin-left: 0;
+	padding: 20px 0;
+	width: 300px;
+	
+	.utilities {
+		text-align: right; 
+		margin-bottom: 10px;
+	}
+	
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	border-top: 5px solid #fff;
+  background-image: url('/images/bg-sand.png');
+	text-align: center;
+	padding: 10px;
+	color: #C7B29C;
+	text-transform: uppercase;
+	font-size: 12px;
+	line-height: 24px;
+	font-family: Helvetica, Arial, sans-serif;
+	z-index: 100;
+	@include box-shadow(0 0 5px rgba(#000,.7));
+}

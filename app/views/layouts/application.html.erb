@@ -13,75 +13,77 @@
 	<meta property="og:site_name" content="Tuckered.In" />
 </head>
 <body class="index">
-	<header>
-		<div class="wrapper">
-			<div class="left">
-				<ul>
-					<li><input type="text" value="Search tags!"/></li>
-				</ul>
-			</div>
-			<h1><a href="/"><img src="/images/puppy.png" alt="Home"/></a></h1>
-			<div class="right">
-				<ul>
-					<li>
-						<% if current_user %>
-						  Welcome, <%= current_user.name %>!
-						  <%= link_to "Sign Out", signout_path %>
-						<% else %>
-						  <%= link_to "Sign In", "/auth/twitter", :class => 'twitter' %>
-						<% end %>
-					</li>
-					<% if current_user && current_user.is_admin? %>
-					<li><a href="javascript:;" onclick="window.open('<%= upload_path %>','pin'+(new Date).getTime(),'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=450,height=300,left=0,top=0');">Upload</a></li>
-					<li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
-					<% else %>
-					<!--<li>
-						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.tuckered.in" data-text="OMG. This site is the cutest!" data-via="TuckeredIn">Tweet</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</li>-->
-					<% end %>
-				</ul>
-			</div>
-		</div>
-	</header>
-	
-	<div id="title">
-		<h2>tuckered.in</h2>
-		<span>It's just so cute!</span>
-	</div>
-	
-	<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
-	<div class="alert">
-		<a class="close" data-dismiss="alert" href="#">&times;</a>
-	  <%= alert %>
-	</div>
-	<% elsif notice %>
-	<div class="alert alert-success">
-		<a class="close" data-dismiss="alert" href="#">&times;</a>
-	 	<%= notice %>
-	</div>
-	<% end %>
+<header>
 	<div class="wrapper">
-		<div id="bd">
-			<div class="wrapper">
-				<div id="masonry">
-				
+		<div class="left">
+			<ul>
+				<li><input type="text" value="Search tags!"/></li>
+			</ul>
+		</div>
+		<h1><a href="/"><img src="/images/puppy.png" alt="Home"/></a></h1>
+		<div class="right">
+			<!--About &nbsp; &nbsp; &nbsp; <a href="/login">Sign In</a> &nbsp; &nbsp; &nbsp; <a href="http://twitter.com/tuckeredin"><img src="images/icn-twitter.png" valign="top" /></a>-->
+			<ul>
+				<li>
+					<% if current_user %>
+					  Welcome, <%= current_user.name %>!
+					  <%= link_to "Sign Out", signout_path %>
+					<% else %>
+					  <%= link_to "Sign In", "/auth/twitter", :class => 'twitter' %>
+					<% end %>
+				</li>
+				<% if current_user && current_user.is_admin? %>
+				<li><a href="javascript:;" onclick="window.open('<%= upload_path %>','pin'+(new Date).getTime(),'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=450,height=300,left=0,top=0');">Upload</a></li>
+				<li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
+				<% else %>
+				<!--<li>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.tuckered.in" data-text="OMG. This site is the cutest!" data-via="TuckeredIn">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</li>-->
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</header>
+	
+<div id="title">
+	<h2>tuckered.in</h2>
+	<h3>it's just so cute!</h3>
+</div>
+	
+<% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
+<div class="alert">
+	<a class="close" data-dismiss="alert" href="#">&times;</a>
+  <%= alert %>
+</div>
+<% elsif notice %>
+<div class="alert alert-success">
+	<a class="close" data-dismiss="alert" href="#">&times;</a>
+ 	<%= notice %>
+</div>
+<% end %>
+
+<div class="wrapper">
+	<div id="cuties">
+			
 <%= content_for?(:content) ? yield(:content) : yield %> 
 
-				</div>
-			</div>
-		</div>
 	</div>
+</div>
+
+<!--<div id="media-overlay"></di>
+<div id="media-view"></div>-->
 	
-	<!--<div id="media-overlay"></di>
-	<div id="media-view"></div>-->
+<footer>
+	<ul>
+		<li>copyright &copy; <%= Date.today.year %></li>
+		<!--<li><a href="/">about</a></li>-->
+		<li><a href="http://www.twitter.com/tuckeredin" />twitter</a></li>
+	</ul>
+</footer>
 	
-	<footer>
-		<p>copyright &copy; <%= Date.today.year %></p>
-	</footer>
-	
-  <%= javascript_include_tag "application" %>
-	<%= render :partial => 'shared/analytics' %>
+<%= javascript_include_tag "application" %>
+<%= render :partial => 'shared/analytics' %>
 	
 </body>
 </html>

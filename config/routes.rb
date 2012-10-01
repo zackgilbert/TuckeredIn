@@ -19,8 +19,9 @@ TuckeredIn::Application.routes.draw do
   delete "/photos/:id/unlike" => "photos#unlike", :as => "unlike_photo"
   
   get "/pending" => "photos#pending", :as => 'pending'
-  
-  root :to => 'photos#index'
-  #root :to => 'pages#splash'
 
+  get "/splash" => 'pages#splash'  
+  get "/home" => 'photos#index'  
+  root :to => 'pages#splash'
+  
 end

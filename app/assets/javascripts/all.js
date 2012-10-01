@@ -9,7 +9,7 @@ function initLayout(){
 }
 
 function resort(){
-  $('#masonry').masonry({
+  $('#cuties').masonry({
     itemSelector : '.item',
     isResizable: false
   });
@@ -20,7 +20,7 @@ $(function(){
 	setTimeout(function() {
 		initLayout();
 		resort();		
-	}, 100);	
+	}, 300);	
 });
 
 $(window).resize(function(){
