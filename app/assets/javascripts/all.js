@@ -17,10 +17,16 @@ function resort(){
 
 $(function(){
 	// delay for masonry to load.
+	initLayout();
 	setTimeout(function() {
-		initLayout();
 		resort();		
-	}, 300);	
+	}, 300);
+	
+	$('.item .img-wrap').hover(function() {
+		$(this).find(".item-details").show();
+	}, function() {
+		$(this).find(".item-details").hide();		
+	});
 });
 
 $(window).resize(function(){

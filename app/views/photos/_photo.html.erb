@@ -1,5 +1,16 @@
 
   <div class="item">
+		<p>&hearts; &nbsp; <%= photo.likes.size %></p>
+		<div class="img-wrap">
+			<a href="<%= photo_url(photo) %>">
+				<% unless photo.tag_list.empty? %>
+				<div class="item-details"><%= photo.tag_list %></div>
+				<% end %>
+				<%= image_tag(photo.image_url(:thumb)) %>
+			</a>
+		</div>
+		<!--<p>ermahgerd</p>-->
+		<!--
 		<% if current_user %>
 		<div class="utilities">
 			<% if current_user.voted_for? photo %>
@@ -13,22 +24,6 @@
     <h2 class="lipsum"></h2>
     <div class="comments">
 			<span class="likes"><span class="value"><%= photo.likes.size %></span> Likes</span>
-      <!--2
-      comments-->
     </div>
-    <div class="chat">
-      <!--<div class="chatbox">
-        <img height="30px" src="http://placehold.it/30x30/4e5d32/b847f6&text=ut" width="30px" alt="" />
-        <b>Cathleen Rich</b>
-        via
-        <b>Bart McKenna</b>
-        onto
-        <b>numquam</b>
-      </div>
-      <div class="chatbox">
-        <img height="30px" src="http://placehold.it/30x30/306b89/4c57e3&text=ut" width="30px" alt="" />
-        <b>Caleb Norman</b>
-        <p>Illum adipisci delectus tempore exercitationem ducimus dolorum maxime nesciunt officiis</p>
-      </div>-->
-    </div>
+    -->
   </div>
