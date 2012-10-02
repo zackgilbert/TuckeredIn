@@ -169,6 +169,7 @@ header {
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
 		border-radius: 3px;
+		overflow: hidden;
 		
 		.item-details {
 		 	display: none; 
@@ -191,6 +192,7 @@ header {
 			color: inherit;
 			display: block;
 			margin-bottom: -6px;
+			overflow: hidden;
 			
 			img {
 				width: 180px;

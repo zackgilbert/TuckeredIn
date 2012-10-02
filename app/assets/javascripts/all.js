@@ -18,9 +18,10 @@ function resort(){
 $(function(){
 	// delay for masonry to load.
 	initLayout();
+	resort();		
 	setTimeout(function() {
 		resort();		
-	}, 300);
+	}, 500);
 	
 	$('.item .img-wrap').hover(function() {
 		$(this).find(".item-details").show();
