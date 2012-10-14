@@ -3,9 +3,9 @@ class PhotosController < ApplicationController
   # GET /
   def index
     if params[:tag]
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag])
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag]).page params[:page]
     else
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC")
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page params[:page]
     end
     
     respond_to do |format|
@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
   
   # GET /pending
   def pending
-    @photos = Photo.where("approved_at IS NULL").order("created_at DESC")
+    @photos = Photo.where("approved_at IS NULL").order("created_at DESC").page params[:page]
     
     respond_to do |format|
       format.html { render action: :index }

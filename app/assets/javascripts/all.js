@@ -16,19 +16,16 @@ function resort(){
 }
 
 $(function(){
+	initLayout();
+
 	$('#cuties, .item img').imagesLoaded( function( $images, $proper, $broken ) {
-		console.log( $images.length + ' images total have been loaded' );
+		//console.log( $images.length + ' images total have been loaded' );
 		//console.log( $proper.length + ' properly loaded images' );
 		//console.log( $broken.length + ' broken images' );
 		resort();	
 	});
 	
-	// delay for masonry to load.
-	initLayout();
 	resort();		
-	/*setTimeout(function() {
-		resort();		
-	}, 500);*/
 	
 	$('.item .img-wrap').hover(function() {
 		$(this).find(".item-details").show();
