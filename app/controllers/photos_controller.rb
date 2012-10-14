@@ -20,7 +20,11 @@ class PhotosController < ApplicationController
   
   # GET /pending
   def pending
-    @photos = Photo.where("approved_at IS NULL").order("created_at DESC").page params[:page]
+    @current_page = params[:page]
+    @current_page ||= '1'
+    @next_page = 0
+    @photos = Photo.where("approved_at IS NULL").order("created_at DESC").page @current_page
+    @next_page = @current_page.to_i+1 if @photos.length >= 25
     
     respond_to do |format|
       format.html { render action: :index }
