@@ -1,0 +1,19 @@
+- header
+	X logo hover
+	- design search field
+	- organize content
+X center items
+X get rid of bottom red border
+X hover state
+
+- put ability to like (with indicator) back in for logged in users
+- how subscriptions work
+- tags
+	- get search working
+	- autocomplete
+	- organize/standardize tags
+- photo show view
+- pending board
+- pagination
+- scroll to top
+- fix masonry issues (could be fixed by pagination? or just delaying resort longer)

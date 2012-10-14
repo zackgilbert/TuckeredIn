@@ -1,9 +1,9 @@
 
   <div class="item">
-		<p>&hearts; &nbsp; <%= photo.likes.size %></p>
+		<!--<p>&hearts; &nbsp; <% photo.likes.size %></p>-->
 		<div class="img-wrap">
 			<a href="<%= photo_url(photo) %>">
-				<% unless photo.tag_list.empty? %>
+				<% unless true #photo.tag_list.empty? %>
 				<div class="item-details"><%= photo.tag_list %></div>
 				<% end %>
 				<%= image_tag(photo.image_url(:thumb)) %>
