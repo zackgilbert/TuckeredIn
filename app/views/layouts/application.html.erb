@@ -22,7 +22,8 @@
 		<h1><a href="/"><img src="/images/puppy.png" alt="Home"/><p>it's just so cute!</p></a></h1>
 		<div class="right">
 			<!--About &nbsp; &nbsp; &nbsp; <a href="/login">Sign In</a> &nbsp; &nbsp; &nbsp; <a href="http://twitter.com/tuckeredin"><img src="images/icn-twitter.png" valign="top" /></a>-->
-			<ul>
+			<% if current_user %>
+			<ul id="loggedin">
 				<li>
 					<% if current_user %>
 					  Hi, <%= current_user.name %>!
@@ -42,6 +43,7 @@
 				</li>-->
 				<% end %>
 			</ul>
+			<% end %>
 		</div>
 	</div>
 </header>
@@ -76,11 +78,19 @@
 <div id="media-view"></div>-->
 	
 <footer>
-	<ul>
+	<!--<ul>
 		<li>copyright &copy; <%= Date.today.year %></li>
-		<!--<li><a href="/">about</a></li>-->
 		<li><a href="http://www.twitter.com/tuckeredin" />twitter</a></li>
-	</ul>
+	</ul>-->
+	
+	<div id="social-container">
+		<ul>
+			<li><a href="http://twitter.com/tuckeredin" id="twitter"></a></li>
+			<li><a href="https://www.facebook.com/pages/TuckeredIn/391252914267589" id="facebook"></a></li>
+			<li><a href="mailto:contact@tuckered.in" id="email"></a></li>
+		</ul>
+	</div>
+	
 </footer>
 	
 <%= javascript_include_tag "application" %>

@@ -2,3 +2,6 @@
 <% @photos.each do |photo| %>
 	<%= render photo %>
 <% end %>
+<% if @photos.length <= 0 %>
+<div>Looks like there isn't any adorableness left.</div>
+<% end %>

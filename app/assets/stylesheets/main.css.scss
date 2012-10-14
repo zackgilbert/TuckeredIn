@@ -82,19 +82,24 @@ header {
 
 	.right {
 	  position: absolute;
-	  top: 0;
+	  top: -25px;
 	  right: 0;
 	  font-family: 'Source Sans Pro', sans-serif;
 		text-align: right;
 		font-size: 16px;
 		color: #ee4036;
 		text-shadow: 0 -1 0 #fff;
-		padding-right: 40px;
-		padding-top: 5px;
+		padding-right: 0px;
+		padding-top: 0px;
 		
-		li {
-			float: left;
-			margin-left: 10px;
+		#loggedin {
+			padding-right: 0px;
+			padding-top: 25px;
+			
+			li {
+				float: left;
+				margin-left: 10px;
+			}
 		}
 	}
 	
@@ -220,7 +225,7 @@ footer {
 	width: 100%;
 	border-top: 5px solid #fff;
 	background-image: url('/images/bg-sand.png');
-	padding: 10px;
+	padding: 0px 10px;
 	color: #C7B29C;
 	font-family: 'Source Sans Pro', sans-serif;
 	text-transform: uppercase;
@@ -237,5 +242,43 @@ footer {
 			float: left;
 			padding-left: 10px;
 		}
+	}
+	
+	#social-container {
+		/*margin-top:13px;*/
+		margin: auto;
+		width:240px;
+		top: -5px;
+		position: relative;
+	
+		ul {
+			list-style-type:none;
+			padding:0 0 0 8px;
+		
+			li {
+				float:left;
+				padding:0px 5px 5px;
+			
+				a {
+					display: block;
+					width:58px;
+					height:58px;
+					overflow:hidden;	
+				}
+			}
+		}
+	}
+	
+	#twitter {
+		background:url('/images/btn-twitter.png') no-repeat 0 0;
+	}
+	#facebook {
+		background:url('/images/btn-facebook.png') no-repeat 0 0;
+	}
+	#email {
+		background:url('/images/btn-email.png') no-repeat 0 0;
+	}
+	#social-container li a:hover {
+		background-position-y:-60px;
 	}
 }
