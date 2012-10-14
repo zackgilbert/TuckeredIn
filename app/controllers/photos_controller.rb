@@ -2,13 +2,14 @@ class PhotosController < ApplicationController
 
   # GET /
   def index
+    @current_page = params[:page]||'1'
     @next_page = false
     if params[:tag]
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag]).page params[:page]
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag]).page @current_page
     else
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page params[:page]
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page @current_page
     end
-    @next_page = params[:page]+1 if @photos.length >= 25
+    @next_page = @current_page.to_i+1 if @photos.length >= 25
     
     respond_to do |format|
       format.html # index.html.erb
