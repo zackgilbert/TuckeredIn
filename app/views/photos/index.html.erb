@@ -2,6 +2,11 @@
 <% @photos.each do |photo| %>
 	<%= render photo %>
 <% end %>
+<% if @next_page %>
+<nav id="page-nav">
+  <a href="?page=<%= next_page %>"></a>
+</nav>
+<% end %>
 <% if @photos.length <= 0 %>
 <div>Looks like there isn't any adorableness left.</div>
 <% end %>
