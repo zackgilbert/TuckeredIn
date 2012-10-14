@@ -2,9 +2,9 @@
 <% @photos.each do |photo| %>
 	<%= render photo %>
 <% end %>
-<% if @next_page %>
+<% if @next_page >= 1 %>
 <nav id="page-nav">
-  <a href="?page=<%= next_page %>"></a>
+  <a href="?page=<%= @next_page %>"></a>
 </nav>
 <% end %>
 <% if @photos.length <= 0 %>

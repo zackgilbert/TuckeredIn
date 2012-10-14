@@ -2,8 +2,9 @@ class PhotosController < ApplicationController
 
   # GET /
   def index
-    @current_page = params[:page]||'1'
-    @next_page = false
+    @current_page = params[:page]
+    @current_page ||= '1'
+    @next_page = 0
     if params[:tag]
       @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag]).page @current_page
     else
