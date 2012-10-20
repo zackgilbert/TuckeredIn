@@ -1,8 +1,9 @@
 //= require jquery
 //= require jquery_ujs
-// require twitter/bootstrap
 //= require jquery.masonry.min
 //= require jquery.imagesloaded
 //= require jquery.infinitescroll
+//= require bootstrap-modal-2.0.0
+//= require bootstrap-transition-2.0.0
+//= require jquery.bootbox
 //= require all
-// require buttons

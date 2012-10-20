@@ -65,6 +65,17 @@ $(function(){
 		$("html, body").animate({ scrollTop: 0 }, 600);
 		return false;
 	});
+	
+	$(".item a").bind('click', function(e) {
+		e.preventDefault();
+		console.log(this.href);
+	  var str = $('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>');
+		bootbox.modal(str, { backdrop : true });
+		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
+			//console.log(response);
+			//str.html(response);
+		});
+	});
 });
 
 $(window).resize(function(){
