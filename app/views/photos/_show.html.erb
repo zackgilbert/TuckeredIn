@@ -1,0 +1,66 @@
+	
+	<div id="photo-container">
+		<div class="row">
+			<div class="span8">
+				<img src="<%= @photo.image_url %>" class="photo">
+			</div>
+			<div class="span4">
+
+				<% if false %>
+				<div class="utilities">
+					<% if current_user.is_admin? %>
+			    <%= link_to 'y', @photo, confirm: 'Are you sure?', method: :delete, :class => "btn" %>
+			    <%= link_to '[', edit_photo_path(@photo), :class => "btn btn" %>
+					<% end %>
+					<% if current_user.voted_for? @photo %>
+					<a href="<%= unlike_photo_path(@photo) %>" class="like btn selected">b</a>
+					<% else %>
+					<a href="<%= like_photo_path(@photo) %>" class="like btn">b</a>			
+					<% end %>
+				</div>
+				<% end %>
+				
+				<div>
+					<pre><%= @photo.to_yaml %></pre>
+				</div>
+				
+<% 
+=begin
+				<div>
+					<ul>
+						<% @photo.tag_counts.each do |tag| %>
+						<li><%= link_to tag.name, root_path(:tag => tag.name) %></li>
+						<% end %>
+					</ul>
+					
+					<span class="likes"><span class="value"><%= @photo.likes.size %></span> Likes</span>
+				</div>
+				
+				<!--<div class="profile clearfix">
+					<img src="http://images.instagram.com/profiles/profile_7792429_75sq_1340470686.jpg" class="avatar">
+					<h1 class="username">ryanbriones</h1>
+					<div class="caption"></div>
+				</div>
+				<div class="actionbar clearfix"> 
+					<a data-media-id="224124769445214406_7792429" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.pinstagram.co%2Fryanbriones%2Fmedia%2F224124769445214406_7792429&amp;media=http%3A%2F%2Fdistilleryimage10.s3.amazonaws.com%2F21b20322c19411e1b2fe1231380205bf_7.jpg&amp;description=" title="Pin It" count-layout="none" target="_blank" class="btn btn-small pin-btn"><i class="icon-pinterest"></i></a>  
+					<a data-media-id="224124769445214406_7792429" class="btn btn-small fb-btn"><i class="icon-facebook"></i></a>  <a data-media-id="224124769445214406_7792429" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwww.pinstagram.co%2Fryanbriones%2Fmedia%2F224124769445214406_7792429&amp;hashtags=pinstagram&amp;text=&quot;&quot;" class="btn btn-small tw-btn"><i class="icon-twitter"></i></a> 
+					<div class="pull-right"> 
+						<button data-toggle="button" class="btn btn-small like-btn"><i class="icon-heart"></i><span class="btn-text"></span></button>  
+						<a href="http://stickygram.com/?pid=129" target="_blank" data-track="true" data-track-category="StickyGram" data-track-action="Print" class="btn btn-small print-btn"><i class="icon-print"></i></a> 
+					</div>
+				</div>
+				<div class="likes clearfix">
+					<i class="icon-heart"></i>Liked by <span class="likes-users"></span> 
+				</div>
+				<ul class="comments"></ul>
+				<div class="comment-entry clearfix">
+					<img src="http://images.instagram.com/profiles/profile_334849_75sq_1338250259.jpg" class="avatar">
+					<p><textarea name="text" placeholder="Comment..."></textarea></p>
+				</div>-->
+=end 
+
+%>
+ 
+			</div>
+		</div>
+	</div>

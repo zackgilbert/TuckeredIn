@@ -230,6 +230,32 @@ header {
 	}	
 }
 
+#photo-container {
+	/*background: #f3f3f3;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 3px rgba(34,25,25,0.4);*/
+  line-height: 1.5;
+  position: relative;
+  font-family: 'Source Sans Pro', sans-serif;	
+  color: #99948f;	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	.img-wrap {
+		background-color: #ee4036;
+		border: 5px solid #fff;
+		box-shadow: 0 0 10px rgba(0,0,0,.2);
+		z-index: 50;
+		margin-top: 10px auto 5px;
+		position: relative;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+}
+
 
 footer {
 	position: fixed;

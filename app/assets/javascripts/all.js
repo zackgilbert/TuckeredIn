@@ -66,10 +66,10 @@ $(function(){
 		return false;
 	});
 	
-	$(".item a").bind('click', function(e) {
+	$(".item a").live('click', function(e) {
 		e.preventDefault();
 		console.log(this.href);
-	  var str = $('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>');
+	  var str = $('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>'); // change this to some sort of loader...
 		bootbox.modal(str, { backdrop : true });
 		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
 			//console.log(response);
