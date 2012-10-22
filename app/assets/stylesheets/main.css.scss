@@ -154,7 +154,7 @@ header {
 		position:fixed;
 		bottom: 100px;
 		right: 20px;
-		z-index: 2002;
+		z-index: 101;
 		display:none;			
 		background: url('/images/icon-top.png') no-repeat;
 	}
@@ -255,11 +255,17 @@ header {
 		img {
 			margin-bottom: -5px;
 			max-height: 350px;
+			max-width: 480px;
 			border-radius: 10px;
 			border: 10px solid #fff;
-			box-shadow: 0 0 10px rgba(0,0,0,.2);
-			
+			box-shadow: 0 0 10px rgba(0,0,0,.2);			
 		}
+	}
+	
+	p {
+		margin: 9px 0px;
+		padding: 0px 10px;
+		text-align: right;
 	}
 	
 	.social-container {
