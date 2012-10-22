@@ -74,6 +74,7 @@ $(function(){
 		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
 			//console.log(response);
 			//str.html(response);
+			_gaq.push(['_trackPageview', this.href]);
 		});
 	});
 	$('body').tooltip({
