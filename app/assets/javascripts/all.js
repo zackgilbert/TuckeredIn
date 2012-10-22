@@ -70,7 +70,7 @@ $(function(){
 		e.preventDefault();
 		//console.log(this.href);
 	  var str = $('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>'); // change this to some sort of loader...
-		bootbox.modal(str, { backdrop : true });
+		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
 			//console.log(response);
 			//str.html(response);

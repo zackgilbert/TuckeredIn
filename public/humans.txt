@@ -17,13 +17,13 @@
 	    
 /* SITE */
 
-	URL: http://tuckered.in
+	URL: http://www.tuckered.in
 	Facebook: https://www.facebook.com/pages/TuckeredIn/391252914267589
 	Twitter: @tuckeredin
 	
-	Last update: 2012-08-30 
+	Last update: 2012-10-22 
 	Standards: HTML5, CSS3
-	Components: HTML5 Boilerplate, Modernizr, jQuery, Ruby on Rails, 
+	Components: HTML5 Boilerplate, Modernizr, jQuery, Ruby on Rails, Bootstrap
 	Software: Ruby on Rails, MySQL
 	Hosting: Heroku, AWS
 	IDE: TextMate

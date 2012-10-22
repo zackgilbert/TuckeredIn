@@ -415,7 +415,8 @@ var bootbox = window.bootbox || (function($) {
                 closeButton = "<a href='javascript:;' class='close'>&times;</a>";
             }
 
-            parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+            //parts.push("<div class='modal-header'>"+closeButton+"<h3>"+options['header']+"</h3></div>");
+            parts.push("<div class='modal-header'>"+closeButton+"</div>");
         }
 
         // push an empty body into which we'll inject the proper content later
