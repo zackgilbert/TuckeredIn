@@ -231,31 +231,47 @@ header {
 }
 
 #photo-container {
-	/*background: #f3f3f3;
-  border: 1px solid #eee;
-  box-shadow: 0 1px 3px rgba(34,25,25,0.4);*/
   line-height: 1.5;
   position: relative;
   font-family: 'Source Sans Pro', sans-serif;	
   color: #99948f;	
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-
+	width: 500px;
+	max-height: 400px;
+	margin: 15px auto;
+	text-align: center;
+	
 	.img-wrap {
-		background-color: #ee4036;
-		border: 5px solid #fff;
-		box-shadow: 0 0 10px rgba(0,0,0,.2);
+		/*background-color: #ee4036;
+		border: 10px solid #fff;
+		box-shadow: 0 0 10px rgba(0,0,0,.2);*/
 		z-index: 50;
 		margin-top: 10px auto 5px;
 		position: relative;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
-		overflow: hidden;
-	}
-}
+		/*-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;*/
+		display: inline-block;
 
+		img {
+			margin-bottom: -5px;
+			max-height: 350px;
+			border-radius: 10px;
+			border: 10px solid #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,.2);
+			
+		}
+	}
+	
+	.social-container {
+		width: 108px; /* when 3: 164px;*/
+		
+		a {
+			width: 40px;
+			height: 40px;
+		}
+	}
+	
+}
 
 footer {
 	position: fixed;
@@ -282,43 +298,46 @@ footer {
 			padding-left: 10px;
 		}
 	}
+}
+
+.social-container {
+	/*margin-top:13px;*/
+	margin: auto;
+	width:240px;
+	top: -5px;
+	position: relative;
+
+	ul {
+		list-style-type:none;
+		padding: 0 0 0 5px;
+		margin: 10px 0px 0px;
 	
-	#social-container {
-		/*margin-top:13px;*/
-		margin: auto;
-		width:240px;
-		top: -5px;
-		position: relative;
-	
-		ul {
-			list-style-type:none;
-			padding: 0 0 0 5px;
-			margin: 10px 0px 0px;
+		li {
+			float:left;
+			padding:0px 5px 5px;
 		
-			li {
-				float:left;
-				padding:0px 5px 5px;
-			
-				a {
-					display: block;
-					width:58px;
-					height:58px;
-					overflow:hidden;	
-				}
+			a {
+				display: block;
+				width:58px;
+				height:58px;
+				overflow:hidden;	
 			}
 		}
 	}
-	
-	#twitter {
-		background:url('/images/btn-twitter.png') no-repeat 0 0;
-	}
-	#facebook {
-		background:url('/images/btn-facebook.png') no-repeat 0 0;
-	}
-	#email {
-		background:url('/images/btn-email.png') no-repeat 0 0;
-	}
-	#social-container li a:hover {
-		background-position-y:-60px;
-	}
+}
+
+#twitter {
+	background:url('/images/btn-twitter.png') no-repeat 0 0;
+	background-size: 100%;
+}
+#facebook {
+	background:url('/images/btn-facebook.png') no-repeat 0 0;
+	background-size: 100%;
+}
+#email {
+	background:url('/images/btn-email.png') no-repeat 0 0;
+	background-size: 100%;
+}
+.social-container li a:hover {
+	background-position-y:-60px;
 }

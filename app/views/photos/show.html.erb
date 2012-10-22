@@ -3,11 +3,17 @@
 		<div class="img-wrap">
     	<img src="<%= @photo.image_url %>" class="photo">
     </div>
-			<!--<div class="span4">
-				
-				<div>
-					<pre><%= @photo.to_yaml %></pre>
-				</div>
- 
-			</div>-->
+    <% if @photo.source_url.present? %>
+    <p>via <a href="<%= @photo.source_url %>"><%= @photo.source_url.split("/")[2] %></a></p>
+    <% end %>
+		<div class="social-container">
+  		<ul>
+  		  <!--<li><a href="" id="like"></a></li>-->
+  			<li>
+  			  <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Ftuckered.in&amp;source=tweetbutton&amp;text=It's just so cute!&amp;url=http%3A%2F%2Ftuckered.in%2Fphotos%2F<%= @photo.id %>&amp;via=tuckeredin" target="_blank" id="twitter" class="twitter-share-button" rel="tooltip" title="Share this on Twitter"></a>
+  			</li>
+  			<li><a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.tuckered.in%2Fphotos%2F<%= @photo.id %>" target="_blank" id="facebook" rel="tooltip" title="Share this on Facebook"></a></li>
+  			<!--<li><a href="mailto:contact@tuckered.in" id="email" rel="tooltip" title="Email this to a friend"></a></li>-->
+  		</ul>
+  	</div>
 	</div>
