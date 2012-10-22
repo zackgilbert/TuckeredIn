@@ -70,11 +70,12 @@ $(function(){
 		e.preventDefault();
 		//console.log(this.href);
 	  var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
+		var link = this.href;
 		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
-		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
-			//console.log(response);
-			//str.html(response);
-			_gaq.push(['_trackPageview', this.href]);
+		$('.modal-body').load(link + " #photo-container", function(response, status, xhr) {
+			var domain = link.split('/')[2];
+			var page = link.substr("http://".length + domain.length);
+			_gaq.push(['_trackPageview', page]);
 		});
 	});
 	$('body').tooltip({
