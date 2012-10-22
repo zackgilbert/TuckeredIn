@@ -69,7 +69,7 @@ $(function(){
 	$(".item a").live('click', function(e) {
 		e.preventDefault();
 		//console.log(this.href);
-	  var str = $('<img src="http://dummyimage.com/600x400/000/fff" alt=""/>'); // change this to some sort of loader...
+	  var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 		$('.modal-body').load(this.href + " #photo-container", function(response, status, xhr) {
 			//console.log(response);
