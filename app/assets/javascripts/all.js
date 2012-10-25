@@ -72,7 +72,7 @@ $(function(){
 	  var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 		var link = this.href;
 		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
-		$('.modal-body').load(link + " #photo-container", function(response, status, xhr) {
+		$('.modal-body').load(link, function(response, status, xhr) {
 			var domain = link.split('/')[2];
 			var page = link.substr("http://".length + domain.length);
 			_gaq.push(['_trackPageview', page]);
@@ -82,10 +82,10 @@ $(function(){
 	    selector: '[rel=tooltip]'
 	});
 	
-	if (window.location.href.indexOf('/photos/') > 0) {
+	if (window.location.href.indexOf('/cuties/') > 0) {
 		var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
-		$('.modal-body').load(window.location.href + " #photo-container");
+		$('.modal-body').load(window.location.href);
 	}
 });
 

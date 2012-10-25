@@ -32,8 +32,8 @@ class PhotosController < ApplicationController
     end
   end
   
-  # GET /photos/1
-  # GET /photos/1.json
+  # GET /cuties/1
+  # GET /cuties/1.json
   def show
     if request.xhr?
       @photo = Photo.find(params[:id])

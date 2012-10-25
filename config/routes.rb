@@ -11,7 +11,7 @@ TuckeredIn::Application.routes.draw do
   
   get "/submit" => "photos#new", :as => 'new_photo'
   post "/submit" => "photos#create", :as => 'photos'
-  get "/photos/:id" => "photos#show", :as => "photo"
+  get "/cuties/:id" => "photos#show", :as => "photo"
   delete "/photos/:id" => "photos#destroy"#, :as => "photos"
   get "/photos/:id/edit" => "photos#edit", :as => "edit_photo"
   put "/photos/:id" => "photos#update", :as => "update_photo"
@@ -21,7 +21,8 @@ TuckeredIn::Application.routes.draw do
   get "/pending" => "photos#pending", :as => 'pending'
 
   get "/splash" => 'pages#splash'  
-  get "/home" => 'photos#index'  
+  get "/home" => 'photos#index'
+  get "/cuties" => redirect("/")
   root :to => 'pages#splash'
   
 end
