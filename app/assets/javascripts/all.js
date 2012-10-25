@@ -81,6 +81,12 @@ $(function(){
 	$('body').tooltip({
 	    selector: '[rel=tooltip]'
 	});
+	
+	if (window.location.href.indexOf('/photos/') > 0) {
+		var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
+		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+		$('.modal-body').load(window.location.href + " #photo-container");
+	}
 });
 
 $(window).resize(function(){

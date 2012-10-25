@@ -35,16 +35,31 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @photo = Photo.find(params[:id])
+    if request.xhr?
+      @photo = Photo.find(params[:id])
 
-    respond_to do |format|
-      format.html { }#render layout: false } # show.html.erb
-      format.json { render json: @photo }
+      respond_to do |format|
+        format.html { render layout: false }
+        format.json { render json: @photo }
+      end
+    else
+      @current_page = '1'
+      @next_page = 0
+      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page @current_page
+      @next_page = @current_page.to_i+1 if @photos.length >= 25
+      @photo = Photo.find(params[:id])
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.json { render json: @photos }
+      end
     end
   end
   
   # GET /photos/1/edit
   def edit
+    redirect_to root_path && return if !current_user
+    
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
@@ -116,6 +131,8 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
+    redirect_to root_path && return if !current_user
+    
     @photo = Photo.find(params[:id])
     @photo.destroy
 
