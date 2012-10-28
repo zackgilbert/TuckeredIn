@@ -33,7 +33,7 @@
 			<div class="control-group">
 				<%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
 			  <div class="controls">
-					<%= f.text_field :remote_image_url %>
+					<%= f.text_field :remote_image_url, :placeholder => "http://" %>
   				<p>(or <a href="/upload">upload image</a>)</p>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 			<div class="control-group">
 				<%= f.label :source_url, "Source URL", :class => 'control-label' %>
 			  <div class="controls">
-					<%= f.text_field :source_url %>
+					<%= f.text_field :source_url, :placeholder => "http://" %>
 				</div>
 			</div>
 			

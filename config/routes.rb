@@ -15,13 +15,15 @@ TuckeredIn::Application.routes.draw do
   delete "/photos/:id" => "photos#destroy"#, :as => "photos"
   get "/photos/:id/edit" => "photos#edit", :as => "edit_photo"
   put "/photos/:id" => "photos#update", :as => "update_photo"
+  post "/photos/:id/approve" => "photos#approve", :as => "approve_photo"
+  delete "/photos/:id/unapprove" => "photos#unapprove", :as => "unapprove_photo"
   post "/photos/:id/like" => "photos#like", :as => "like_photo"
   delete "/photos/:id/unlike" => "photos#unlike", :as => "unlike_photo"
   
   get "/pending" => "photos#pending", :as => 'pending'
 
   get "/splash" => 'pages#splash'  
-  get "/home" => 'photos#index'
+  get "/home" => 'photos#index', :as => 'home'
   get "/cuties" => redirect("/")
   root :to => 'pages#splash'
   

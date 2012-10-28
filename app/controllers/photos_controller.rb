@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
 
-  # GET /
+  # GET /home
   def index
     @current_page = params[:page]
     @current_page ||= '1'
@@ -58,7 +58,7 @@ class PhotosController < ApplicationController
   
   # GET /photos/1/edit
   def edit
-    redirect_to root_path && return if !current_user
+    redirect_to home_path && return if !current_user
     
     @photo = Photo.find(params[:id])
 
@@ -68,6 +68,7 @@ class PhotosController < ApplicationController
   end
   
   # GET /submit
+  # GET /upload
   def new    
     if !current_user
       redirect_away "/login"
@@ -91,7 +92,7 @@ class PhotosController < ApplicationController
   # POST /submit
   # POST /submit.json
   def create
-    redirect_to root_path && return if !current_user
+    redirect_to home_path && return if !current_user
     
     @photo = Photo.new(params[:photo])
     @photo.tag_list = params[:tags]
@@ -112,7 +113,7 @@ class PhotosController < ApplicationController
   # PUT /photos/:id
   # PUT /photos/:id.json
   def update
-    redirect_to root_path && return if !current_user
+    redirect_to home_path && return if !current_user
     
     @photo = Photo.find(params[:id])
     @photo.tag_list = params[:tags]
@@ -131,13 +132,13 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
-    redirect_to root_path && return if !current_user
+    redirect_to home_path && return if !current_user
     
     @photo = Photo.find(params[:id])
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Photo was successfully deleted." }
+      format.html { redirect_to home_path, notice: "Photo was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -145,7 +146,7 @@ class PhotosController < ApplicationController
   # POST /photos/1/like
   # POST /photos/1/like.json
   def like
-    redirect_to root_path, notice: "You must be logged in to like photos." if !current_user
+    redirect_to home_path, notice: "You must be logged in to like photos." if !current_user
     
     @photo = Photo.find(params[:id])
     
@@ -163,7 +164,7 @@ class PhotosController < ApplicationController
   # DELETE /photos/1/unlike
   # DELETE /photos/1/unlike.json
   def unlike
-    redirect_to root_path, notice: "You must be logged in to unlike photos." if !current_user
+    redirect_to home_path, notice: "You must be logged in to unlike photos." if !current_user
     
     @photo = Photo.find(params[:id])
     
@@ -174,6 +175,40 @@ class PhotosController < ApplicationController
       else
         format.html { redirect_to @photo, notice: "Our apologies, but we were unable to unlike this photo for you." }
         format.json { head :no_content }
+      end
+    end
+  end
+  
+  # POST /photos/1/approve
+  def approve
+    redirect_to home_path, notice: "You must be an admin to approve photos." if !current_user || !current_user.is_admin?
+    
+    @photo = Photo.find(params[:id])
+    
+    respond_to do |format|
+      if @photo.update_attributes({ approved_at: Time.now })
+        format.html { redirect_to home_path, notice: 'Photo was successfully approved.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to pending_path, notice: 'Photo was NOT approved.' }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  # DELETE /photos/1/unapprove
+  def unapprove
+    redirect_to home_path, notice: "You must be logged in to unlike photos." if !current_user
+    
+    @photo = Photo.find(params[:id])
+    
+    respond_to do |format|
+      if @photo.update_attributes({ approved_at: nil })
+        format.html { redirect_to pending_path, notice: 'Photo was successfully unapproved.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to home_path, notice: 'Photo was NOT unapproved.' }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
   end
