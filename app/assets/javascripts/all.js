@@ -71,21 +71,34 @@ $(function(){
 		//console.log(this.href);
 	  var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 		var link = this.href;
-		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+		var modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 		$('.modal-body').load(link, function(response, status, xhr) {
+			// lets actually track this page load in analytics so we know what's being loaded.
 			var domain = link.split('/')[2];
 			var page = link.substr("http://".length + domain.length);
 			_gaq.push(['_trackPageview', page]);
+			// change browser address bar.
+			if (link != window.location) {
+				window.history.pushState({ path: link }, '', link);
+			}
 		});
+		modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
+			window.history.pushState({ path: '/home' }, '', '/home');
+		});
+		
 	});
+	
 	$('body').tooltip({
 	    selector: '[rel=tooltip]'
 	});
 	
 	if (window.location.href.indexOf('/cuties/') > 0) {
 		var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
-		bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+		var modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 		$('.modal-body').load(window.location.href);
+		modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
+			window.history.pushState({ path: "/home" }, '', "/home");
+		});
 	}
 });
 
