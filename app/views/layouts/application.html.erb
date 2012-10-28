@@ -2,10 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
 	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
-	<link rel="author" href="/humans.txt" />
 	<meta property="og:title" content="Tuckered.In - It's just so cute!" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Tuckered.In" />
@@ -16,6 +17,12 @@
 	<meta property="og:url" content="http://www.tuckered.in" />
 	<meta property="og:image" content="https://s3.amazonaws.com/tuckeredin/uploads/8/enhanced-buzz-1206-1339243406-9.jpg" />
 	<% end %>
+	<meta name="description" content="Your daily dose of adorable sleeping baby animals. It's just so cute!">
+	<link rel="author" href="/humans.txt" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">	
 </head>
 <body>
 <header>
