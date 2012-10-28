@@ -1,3 +1,6 @@
+// global storing of variables
+var modal = null; // allow for only 1 modal window
+
 function initLayout(){
   var window_width = $(window).width();
   wrapper_width = Math.floor( window_width / 236 ) * 236;
@@ -71,7 +74,7 @@ $(function(){
 		//console.log(this.href);
 	  var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 		var link = this.href;
-		var modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+		modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 		$('.modal-body').load(link, function(response, status, xhr) {
 			// lets actually track this page load in analytics so we know what's being loaded.
 			var domain = link.split('/')[2];
@@ -79,27 +82,31 @@ $(function(){
 			_gaq.push(['_trackPageview', page]);
 			// change browser address bar.
 			if (link != window.location) {
-				window.history.pushState({ path: link }, '', link);
+				if (typeof window.history.pushState == 'function') window.history.pushState({ path: link }, '', link);
 			}
 		});
 		modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
-			window.history.pushState({ path: '/home' }, '', '/home');
+			if (typeof window.history.pushState == 'function') window.history.pushState({ path: '/home' }, '', '/home');
 		});
 		
+	});
+	
+	$(window).bind('popstate', function() {
+		if (window.location.href.indexOf('/cuties/') > 0) {
+			var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
+			modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+			$('.modal-body').load(window.location.href);
+			modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
+				if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/home" }, '', "/home");
+			});
+		} else if (window.location.pathname == '/home') {
+			if (modal.modal) modal.modal('hide');
+		}
 	});
 	
 	$('body').tooltip({
 	    selector: '[rel=tooltip]'
 	});
-	
-	if (window.location.href.indexOf('/cuties/') > 0) {
-		var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
-		var modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
-		$('.modal-body').load(window.location.href);
-		modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
-			window.history.pushState({ path: "/home" }, '', "/home");
-		});
-	}
 });
 
 $(window).resize(function(){
