@@ -6,11 +6,11 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
 </head>
-<body class="submit">
+<body class="submit" style="padding: 0px; margin: 0px;">
 	
-	<div style="width: 400px; margin: auto;">
+	<div style="margin: auto;">
 		
-		<h3>Submit a Photo</h2>
+		<h3 style="margin: 10px 0px 0px 20px;">Submit a Photo</h2>
 
 		<%= form_for(@photo, :html => { :multipart => true, :class => 'form-horizontal' }) do |f| %>
 		  <% if @photo.errors.any? %>
@@ -34,12 +34,14 @@
 				<%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
 			  <div class="controls">
 					<%= f.text_field :remote_image_url %>
+  				<p>(or <a href="/upload">upload image</a>)</p>
 				</div>
 			</div>
 			<% else %>
 			<div class="control-group">
 				<div class="controls">
 					<%= f.file_field :image %>
+  				<p>(or <a href="/submit">use a url</a>)</p>
 				</div>
 			</div>
 			<% end %>
@@ -57,8 +59,16 @@
 					<%= text_field_tag :tags %>
 				</div>
 			</div>
+			
+			<% if current_user.is_admin? %>
+			<div class="control-group">
+			  <div class="controls">
+			    <label><input type="checkbox" name="photo[approved_at]" value="<%= Time.now %>"/> Approved</label>
+			  </div>
+			</div>
+			<% end %>
 
-			<div>
+			<div style="margin-left: 160px;">
 				<%= f.submit "Submit", :class => 'btn btn-primary' %>
 				<a href="javascript:;" onclick="window.close();" class="btn">Cancel</a>
 			</div>

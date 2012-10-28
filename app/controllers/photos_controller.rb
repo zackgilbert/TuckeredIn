@@ -97,7 +97,7 @@ class PhotosController < ApplicationController
     @photo.tag_list = params[:tags]
     
     respond_to do |format|
-      @photo.approved_at = Time.now if current_user.is_admin?
+      #@photo.approved_at = Time.now if current_user.is_admin?
 
       if @photo.save
         format.html { render layout: false }#redirect_to root_path, notice: 'Your photo was successfully uploaded.' }
