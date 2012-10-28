@@ -85,7 +85,7 @@ $(function(){
 				if (typeof window.history.pushState == 'function') window.history.pushState({ path: link }, '', link);
 			}
 		});
-		modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
+		modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
 			if (typeof window.history.pushState == 'function') window.history.pushState({ path: '/home' }, '', '/home');
 		});
 		
@@ -96,11 +96,14 @@ $(function(){
 			var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
 			modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 			$('.modal-body').load(window.location.href);
-			modal.on("hide", function() {  // remove the actual elements from the DOM when fully hidden
+			modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
 				if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/home" }, '', "/home");
 			});
 		} else if (window.location.pathname == '/home') {
-			if (modal.modal) modal.modal('hide');
+			if (modal.modal) {
+				modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
+				modal.modal('hide');
+			}
 		}
 	});
 	
