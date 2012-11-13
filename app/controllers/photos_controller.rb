@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
 
+  # GET /
   # GET /home
   def index
     @current_page = params[:page]

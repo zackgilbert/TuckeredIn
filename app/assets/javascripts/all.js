@@ -86,7 +86,7 @@ $(function(){
 			}
 		});
 		modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
-			if (typeof window.history.pushState == 'function') window.history.pushState({ path: '/home' }, '', '/home');
+			if (typeof window.history.pushState == 'function') window.history.pushState({ path: '/' }, '', '/');
 		});
 		
 	});
@@ -97,9 +97,9 @@ $(function(){
 			modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
 			$('.modal-body').load(window.location.href);
 			modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
-				if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/home" }, '', "/home");
+				if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/" }, '', "/");
 			});
-		} else if (window.location.pathname == '/home') {
+		} else {
 			if (modal.modal) {
 				modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
 				modal.modal('hide');
