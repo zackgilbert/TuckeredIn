@@ -23,7 +23,7 @@ TuckeredIn::Application.routes.draw do
   get "/pending" => "photos#pending", :as => 'pending'
 
   get "/splash" => 'pages#splash'  
-  #get "/home" => 'photos#index', :as => 'home'
+  get "/" => 'photos#index', :as => 'home'
   get "/cuties" => redirect("/")
   root :to => 'photos#index'
   
