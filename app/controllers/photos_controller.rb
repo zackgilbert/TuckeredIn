@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
   
   # GET /pending
   def pending
-    redirect_to root_path && return if !current_user
+    redirect_to root_path if !current_user
 
     @current_page = params[:page]
     @current_page ||= '1'
@@ -61,7 +61,7 @@ class PhotosController < ApplicationController
   
   # GET /photos/1/edit
   def edit
-    redirect_to root_path && return if !current_user
+    redirect_to root_path if !current_user
     
     @photo = Photo.find(params[:id])
 
@@ -95,7 +95,7 @@ class PhotosController < ApplicationController
   # POST /submit
   # POST /submit.json
   def create
-    redirect_to root_path && return if !current_user
+    redirect_to root_path if !current_user
     
     @photo = Photo.new(params[:photo])
     @photo.tag_list = params[:tags]
@@ -116,7 +116,7 @@ class PhotosController < ApplicationController
   # PUT /photos/:id
   # PUT /photos/:id.json
   def update
-    redirect_to root_path && return if !current_user
+    redirect_to root_path if !current_user
     
     @photo = Photo.find(params[:id])
     @photo.tag_list = params[:tags]
@@ -135,7 +135,7 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
-    redirect_to root_path && return if !current_user
+    redirect_to root_path if !current_user
     
     @photo = Photo.find(params[:id])
     @photo.destroy
