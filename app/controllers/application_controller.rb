@@ -1,6 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  def admins_only
+    if !current_user || !current_user.is_admin?
+      redirect_to root_path
+      return
+    end
+  end
+  
+  def users_only
+    if !current_user
+      redirect_to root_path
+      return
+    end    
+  end
+  
   private
 
   def current_user

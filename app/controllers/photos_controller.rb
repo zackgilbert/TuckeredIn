@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_filter :admins_only, :only => [:pending, :edit, :create, :update, :destroy]
 
   # GET /
   # GET /home
@@ -21,8 +22,6 @@ class PhotosController < ApplicationController
   
   # GET /pending
   def pending
-    redirect_to root_path if !current_user
-
     @current_page = params[:page]
     @current_page ||= '1'
     @next_page = 0
@@ -60,9 +59,7 @@ class PhotosController < ApplicationController
   end
   
   # GET /photos/1/edit
-  def edit
-    redirect_to root_path if !current_user
-    
+  def edit    
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
@@ -94,9 +91,7 @@ class PhotosController < ApplicationController
   
   # POST /submit
   # POST /submit.json
-  def create
-    redirect_to root_path if !current_user
-    
+  def create    
     @photo = Photo.new(params[:photo])
     @photo.tag_list = params[:tags]
     
@@ -116,8 +111,6 @@ class PhotosController < ApplicationController
   # PUT /photos/:id
   # PUT /photos/:id.json
   def update
-    redirect_to root_path if !current_user
-    
     @photo = Photo.find(params[:id])
     @photo.tag_list = params[:tags]
     
@@ -135,8 +128,6 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
-    redirect_to root_path if !current_user
-    
     @photo = Photo.find(params[:id])
     @photo.destroy
 
