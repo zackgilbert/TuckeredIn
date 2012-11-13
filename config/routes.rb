@@ -25,6 +25,6 @@ TuckeredIn::Application.routes.draw do
   get "/splash" => 'pages#splash'  
   get "/home" => 'photos#index', :as => 'home'
   get "/cuties" => redirect("/")
-  root :to => 'pages#splash'
+  root :to => 'photos#home'
   
 end
