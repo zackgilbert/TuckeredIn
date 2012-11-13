@@ -21,6 +21,8 @@ class PhotosController < ApplicationController
   
   # GET /pending
   def pending
+    redirect_to root_path && return if !current_user
+
     @current_page = params[:page]
     @current_page ||= '1'
     @next_page = 0
