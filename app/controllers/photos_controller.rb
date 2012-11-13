@@ -6,9 +6,9 @@ class PhotosController < ApplicationController
     @current_page ||= '1'
     @next_page = 0
     if params[:tag]
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").tagged_with(params[:tag]).page @current_page
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").tagged_with(params[:tag]).page @current_page
     else
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page @current_page
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
     end
     @next_page = @current_page.to_i+1 if @photos.length >= 25
     
