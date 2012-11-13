@@ -45,7 +45,7 @@ class PhotosController < ApplicationController
     else
       @current_page = '1'
       @next_page = 0
-      @photos = Photo.where("approved_at IS NOT NULL").order("created_at DESC").page @current_page
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
       @next_page = @current_page.to_i+1 if @photos.length >= 25
       @photo = Photo.find(params[:id])
 
