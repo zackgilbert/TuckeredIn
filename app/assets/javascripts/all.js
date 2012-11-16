@@ -91,26 +91,38 @@ $(function(){
 		
 	});
 	
-	$(window).bind('popstate', function() {
-		if (window.location.href.indexOf('/cuties/') > 0) {
-			var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
-			modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
-			$('.modal-body').load(window.location.href);
-			modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
-				if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/" }, '', "/");
-			});
-		} else {
-			if (modal.modal) {
-				modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
-				modal.modal('hide');
-			}
+	$(window).bind('popstate', function(ev) {
+		if (!window.history.ready && !ev.originalEvent.state) {
+			window.history.ready = true;
+			return; // workaround for popstate on load
 		}
+		
+		handleModal();
 	});
 	
 	$('body').tooltip({
 	    selector: '[rel=tooltip]'
 	});
+	
+	setTimeout(function(){ handleModal() }, 1000);
 });
+
+function handleModal() {
+	window.history.ready = true;
+	if (window.location.href.indexOf('/cuties/') > 0) {
+		var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
+		modal = bootbox.modal(str, { backdrop : true, header : true, headerCloseButton : true });
+		$('.modal-body').load(window.location.href);
+		modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
+			if (typeof window.history.pushState == 'function') window.history.pushState({ path: "/" }, '', "/");
+		});
+	} else {
+		if (modal && modal.modal) {
+			modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
+			modal.modal('hide');
+		}
+	}
+}
 
 $(window).resize(function(){
   initLayout();
