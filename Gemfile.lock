@@ -90,6 +90,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
+    newrelic_rpm (3.5.2.17)
     nokogiri (1.5.4)
     oauth (0.4.6)
     omniauth (1.1.0)
@@ -182,6 +183,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mysql2
+  newrelic_rpm
   omniauth-twitter
   rails (= 3.2.3)
   rails_admin
