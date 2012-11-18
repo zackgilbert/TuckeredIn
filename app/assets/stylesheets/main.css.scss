@@ -243,21 +243,22 @@ header {
 
   a {
     position: absolute;
+    top: 30px;
     display: block;
     width: 40px;
-    height: 450px;
+    height: 400px;
     background-repeat: no-repeat;
   }
 
   .modal-nav-prev {
     left: 0px;
     background-image: url(/images/btn-prev.png);
-    background-position: 0px 200px;
+    background-position: 0px 170px;
   }
   .modal-nav-next {
     right: -5px;
     background-image: url(/images/btn-next.png);
-    background-position: 0px 200px;
+    background-position: 0px 170px;
   }
 }
 
