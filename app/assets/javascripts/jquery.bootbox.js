@@ -419,6 +419,9 @@ var bootbox = window.bootbox || (function($) {
             parts.push("<div class='modal-header'>"+closeButton+"</div>");
         }
 
+        // push an empty nav container into which we'll inject the proper navigation later
+        parts.push('<div class="modal-nav"></div>');
+
         // push an empty body into which we'll inject the proper content later
         parts.push("<div class='modal-body'></div>");
 
