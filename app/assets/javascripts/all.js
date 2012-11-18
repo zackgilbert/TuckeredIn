@@ -138,7 +138,7 @@ function handleModal() {
     modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
     modal.on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
       if (typeof window.history.pushState == 'function') {
-        console.log(window.history);
+        //console.log(window.history);
         window.history.pushState({ path: "/" }, '', "/");
       }
     });
