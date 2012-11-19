@@ -248,17 +248,23 @@ header {
     width: 40px;
     height: 400px;
     background-repeat: no-repeat;
+    background-size: 35px 35px;
+    background-position: 0px 170px;
   }
 
   .modal-nav-prev {
     left: 0px;
-    background-image: url(/images/btn-prev.png);
-    background-position: 0px 170px;
+    background-image: url(/images/btn-arrow-left.png);
+  }
+  .modal-nav-prev:active {
+    background-image: url(/images/btn-arrow-left-down.png);
   }
   .modal-nav-next {
     right: -5px;
-    background-image: url(/images/btn-next.png);
-    background-position: 0px 170px;
+    background-image: url(/images/btn-arrow-right.png);
+  }
+  .modal-nav-next:active {
+    background-image: url(/images/btn-arrow-right-down.png);
   }
 }
 
