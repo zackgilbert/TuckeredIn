@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
       user.last_seen_at = Time.now
     end
   end
-  
+
   def is_admin?
     return true if ["Zack Gilbert"].include? self.name
-    ["zackgilbert", "kelseylk"].include? self.username
+    ["zackgilbert", "kelseylk", "DiannaMcD", "TuckeredIn", "beckyrother"].include? self.username
   end
 
 end
