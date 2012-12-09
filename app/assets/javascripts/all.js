@@ -111,6 +111,15 @@ $(function(){
   });
 
   setTimeout(function(){ handleModal() }, 1000);
+
+});
+
+$(document).keydown(function(e){
+  if (e.keyCode == 37) { // left arrow was pressed
+    $('.modal-nav-prev').click();
+  } else if (e.keyCode == 39) { // right arrow was pressed
+    $('.modal-nav-next').click();
+  }
 });
 
 function setModalNav(link) {
