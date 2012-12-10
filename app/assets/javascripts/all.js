@@ -69,7 +69,7 @@ $(function(){
     return false;
   });
 
-  $(".item a, .modal-nav a").live('click', function(e) {
+  $(".item a, .modal-nav a, #upload").live('click', function(e) {
     e.preventDefault();
     //console.log(this.href);
     var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
@@ -133,6 +133,7 @@ function setModalNav(link) {
 }
 
 function handleModal() {
+  //console.log('handleModal started.');
   window.history.ready = true;
   if (window.location.href.indexOf('/cuties/') > 0) {
     //console.log('changed...');
@@ -151,6 +152,9 @@ function handleModal() {
         window.history.pushState({ path: "/" }, '', "/");
       }
     });
+  } else if (window.location.href.indexOf('/upload') > 0) {
+    //console.log('upload file.');
+    $('#upload').click();
   } else {
     if (modal && modal.modal) {
       modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history

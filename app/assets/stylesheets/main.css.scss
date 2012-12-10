@@ -99,6 +99,19 @@ header {
       li {
         float: left;
         margin-left: 10px;
+        padding:0px 5px 5px;
+
+        a {
+        }
+        #upload {
+          background:url('/images/icon-upload.png') no-repeat 0 0;
+          background-size: 100%;
+          display: block;
+          width:58px;
+          height:58px;
+          overflow:hidden;
+          text-indent: 9000px;
+        }
       }
     }
   }
@@ -386,6 +399,7 @@ footer {
   background:url('/images/btn-heart.png') no-repeat 0 0;
   background-size: 100%;
 }
+
 .social-container li a:hover {
   background-position-y:-60px;
 }

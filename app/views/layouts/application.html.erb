@@ -1,105 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<!--<meta name="viewport" content="width=device-width">-->
-	<title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--<meta name="viewport" content="width=device-width">-->
+  <title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
-	<meta property="og:title" content="Tuckered.In - It's just so cute!" />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content="Tuckered.In" />
-	<% if @photo.present? %>
-	<meta property="og:url" content="http://www.tuckered.in/cuties/<%= @photo.id %>" />
-	<meta property="og:image" content="<%= @photo.image_url %>" />
-	<% else %>
-	<meta property="og:url" content="http://www.tuckered.in" />
-	<meta property="og:image" content="https://s3.amazonaws.com/tuckeredin/uploads/8/enhanced-buzz-1206-1339243406-9.jpg" />
-	<% end %>
-	<meta name="description" content="Your daily dose of adorable sleeping baby animals. It's just so cute!">
-	<link rel="author" href="/humans.txt" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">	
+  <meta property="og:title" content="Tuckered.In - It's just so cute!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tuckered.In" />
+  <% if @photo.present? %>
+  <meta property="og:url" content="http://www.tuckered.in/cuties/<%= @photo.id %>" />
+  <meta property="og:image" content="<%= @photo.image_url %>" />
+  <% else %>
+  <meta property="og:url" content="http://www.tuckered.in" />
+  <meta property="og:image" content="https://s3.amazonaws.com/tuckeredin/uploads/8/enhanced-buzz-1206-1339243406-9.jpg" />
+  <% end %>
+  <meta name="description" content="Your daily dose of adorable sleeping baby animals. It's just so cute!">
+  <link rel="author" href="/humans.txt" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">
 </head>
 <body>
 <header>
-	<div class="wrapper">
-		<div class="left">
-			<!--<ul>
-				<li><input type="text" value="Search tags!"/></li>
-			</ul>-->
-		</div>
-		<h1><a href="/"><img src="/images/puppy.png" alt="Home"/><p>it's just so cute!</p></a></h1>
-		<div class="right">
-			<!--About &nbsp; &nbsp; &nbsp; <a href="/login">Sign In</a> &nbsp; &nbsp; &nbsp; <a href="http://twitter.com/tuckeredin"><img src="images/icn-twitter.png" valign="top" /></a>-->
-			<% if current_user %>
-			<ul id="loggedin">
-				<li>
-					<% if current_user %>
-					  Hi, <%= current_user.name %>!
-					  <%= link_to "Sign Out", signout_path %>
-					<% else %>
-					  <% link_to "Sign In", "/auth/twitter", :class => 'twitter' %>
-					<% end %>
-				</li>
-				<% if current_user && current_user.is_admin? %>
-				<li><a href="javascript:;" onclick="window.open('<%= upload_path %>','pin'+(new Date).getTime(),'status=no,resizable=yes,scrollbars=yes,personalbar=no,directories=no,location=no,toolbar=no,menubar=no,width=450,height=300,left=0,top=0');">Upload</a></li>
-				<li><%= link_to "Pending", "/pending" %></li>
-				<li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
-				<% else %>
-				<!--<li>
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.tuckered.in" data-text="OMG. This site is the cutest!" data-via="TuckeredIn">Tweet</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-				</li>-->
-				<% end %>
-			</ul>
-			<% end %>
-		</div>
-	</div>
+  <div class="wrapper">
+    <div class="left">
+      <!--<ul>
+        <li><input type="text" value="Search tags!"/></li>
+      </ul>-->
+    </div>
+    <h1><a href="/"><img src="/images/puppy.png" alt="Home"/><p>it's just so cute!</p></a></h1>
+    <div class="right">
+      <!--About &nbsp; &nbsp; &nbsp; <a href="/login">Sign In</a> &nbsp; &nbsp; &nbsp; <a href="http://twitter.com/tuckeredin"><img src="images/icn-twitter.png" valign="top" /></a>-->
+      <ul id="loggedin">
+        <% if current_user %>
+        <li>Hi, <%= current_user.name %>!</li>
+          <% if current_user && current_user.is_admin? %>
+        <li><%= link_to "Pending", "/pending" %></li>
+        <li><%= link_to "Cuddle!", "javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://www.tuckered.in/assets/cuddlet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" %></li>
+          <% end %>
+        <li><%= link_to "Sign Out", signout_path %></li>
+        <% end %>
+        <li><a href="<%= upload_path %>" id="upload" rel="tooltip" title="Send us your photos!" data-placement="left">Upload</a></li>
+      </ul>
+    </div>
+  </div>
 </header>
-	
+
 <div id="title">
-	<h2>tuckered.in</h2>
-	<h3>it's just so cute!</h3>
+  <h2>tuckered.in</h2>
+  <h3>it's just so cute!</h3>
 </div>
-	
+
 <% if alert # flesh out more: http://twitter.github.com/bootstrap/components.html#alerts %>
 <div class="alert">
-	<a class="close" data-dismiss="alert" href="#">&times;</a>
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
   <%= alert %>
 </div>
 <% elsif notice %>
 <div class="alert alert-success">
-	<a class="close" data-dismiss="alert" href="#">&times;</a>
- 	<%= notice %>
+  <a class="close" data-dismiss="alert" href="#">&times;</a>
+  <%= notice %>
 </div>
 <% end %>
 
 <div class="wrapper">
-			
-<%= content_for?(:content) ? yield(:content) : yield %> 
 
-	<div style="height: 80px; width: 100%;background: none; border: 0px solid #eee; box-shadow: none;">&nbsp;</div>
+<%= content_for?(:content) ? yield(:content) : yield %>
+
+  <div style="height: 80px; width: 100%;background: none; border: 0px solid #eee; box-shadow: none;">&nbsp;</div>
 </div>
 
 <footer>
-	
-	<div class="social-container">
-		<ul>
-			<li><a href="http://twitter.com/tuckeredin" id="twitter" rel="tooltip" title="Follow us on Twitter"></a></li>
-			<li><a href="https://www.facebook.com/pages/TuckeredIn/391252914267589" id="facebook" rel="tooltip" title="Like us on Facebook"></a></li>
-			<li><a href="mailto:contact@tuckered.in" id="email" rel="tooltip" title="Have a problem? Email us!"></a></li>
-		</ul>
-	</div>
-	
+
+  <div class="social-container">
+    <ul>
+      <li><a href="http://twitter.com/tuckeredin" id="twitter" rel="tooltip" title="Follow us on Twitter"></a></li>
+      <li><a href="https://www.facebook.com/pages/TuckeredIn/391252914267589" id="facebook" rel="tooltip" title="Like us on Facebook"></a></li>
+      <li><a href="mailto:contact@tuckered.in" id="email" rel="tooltip" title="Have a problem? Email us!"></a></li>
+    </ul>
+  </div>
+
 </footer>
-	
+
 <%= javascript_include_tag "application" %>
 <%= render :partial => 'shared/analytics' %>
 <%= render :partial => 'shared/feedback' %>
-	
+
 </body>
 </html>

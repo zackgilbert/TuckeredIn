@@ -9,7 +9,7 @@ TuckeredIn::Application.routes.draw do
 
   get "/upload" => "photos#new", :as => 'upload'
 
-  get "/submit" => "photos#new", :as => 'new_photo'
+  get "/submit" => "photos#submit", :as => 'new_photo'
   post "/submit" => "photos#create", :as => 'photos'
   get "/cuties/:id" => "photos#show", :as => "photo"
   delete "/photos/:id" => "photos#destroy", :as => "delete_photo"

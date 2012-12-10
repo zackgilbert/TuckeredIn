@@ -13,13 +13,13 @@ class PhotosController < ApplicationController
       @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
     end
     @next_page = @current_page.to_i+1 if @photos.length >= 25
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @photos }
     end
   end
-  
+
   # GET /pending
   def pending
     @current_page = params[:page]
@@ -27,13 +27,13 @@ class PhotosController < ApplicationController
     @next_page = 0
     @photos = Photo.where("approved_at IS NULL").order("created_at DESC").page @current_page
     @next_page = @current_page.to_i+1 if @photos.length >= 25
-    
+
     respond_to do |format|
       format.html { render action: :index }
       format.json { render json: @photos }
     end
   end
-  
+
   # GET /cuties/1
   # GET /cuties/1.json
   def show
@@ -57,29 +57,54 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # GET /photos/1/edit
-  def edit    
+  def edit
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
       format.html { }#render layout: false } # show.html.erb
     end
   end
-  
-  # GET /submit
+
   # GET /upload
-  def new    
+  def new
+    if request.xhr?
+      @photo = Photo.new
+      @photo.remote_image_url = params[:media] if params[:media]
+      @photo.source_url = params[:url] if params[:url]
+
+      @from_cuddlet = false
+      @from_cuddlet = true if request.fullpath[0...7] == '/submit'
+
+      respond_to do |format|
+        format.html { render layout: false } # new.html.erb
+        #format.json { render json: @photo }
+      end
+    else
+      @current_page = '1'
+      @next_page = 0
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
+      @next_page = @current_page.to_i+1 if @photos.length >= 25
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.json { render json: @photos }
+      end
+    end
+  end
+
+  # GET /submit
+  def submit
     if !current_user
-      redirect_away "/login"
-      #redirect_to root_path, notice: "Sorry, but you must be logged in before you can make submissions."
+      redirect_to "/login"
       return
     end
-    
+
     @photo = Photo.new
     @photo.remote_image_url = params[:media] if params[:media]
     @photo.source_url = params[:url] if params[:url]
-    
+
     @from_cuddlet = false
     @from_cuddlet = true if request.fullpath[0...7] == '/submit'
 
@@ -88,13 +113,13 @@ class PhotosController < ApplicationController
       #format.json { render json: @photo }
     end
   end
-  
+
   # POST /submit
   # POST /submit.json
-  def create    
+  def create
     @photo = Photo.new(params[:photo])
     @photo.tag_list = params[:tags]
-    
+
     respond_to do |format|
       #@photo.approved_at = Time.now if current_user.is_admin?
 
@@ -107,13 +132,13 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # PUT /photos/:id
   # PUT /photos/:id.json
   def update
     @photo = Photo.find(params[:id])
     @photo.tag_list = params[:tags]
-    
+
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
           format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
@@ -124,7 +149,7 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
@@ -136,14 +161,14 @@ class PhotosController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   # POST /photos/1/like
   # POST /photos/1/like.json
   def like
     redirect_to root_path, notice: "You must be logged in to like photos." if !current_user
-    
+
     @photo = Photo.find(params[:id])
-    
+
     respond_to do |format|
       if @photo.liked_by current_user
         format.html { redirect_to @photo, notice: "Photo was successfully liked." }
@@ -154,14 +179,14 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /photos/1/unlike
   # DELETE /photos/1/unlike.json
   def unlike
     redirect_to root_path, notice: "You must be logged in to unlike photos." if !current_user
-    
+
     @photo = Photo.find(params[:id])
-    
+
     respond_to do |format|
       if @photo.unvote(:voter => current_user)
         format.html { redirect_to @photo, notice: "Photo was successfully unliked." }
@@ -172,13 +197,13 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # POST /photos/1/approve
   def approve
     redirect_to root_path, notice: "You must be an admin to approve photos." if !current_user || !current_user.is_admin?
-    
+
     @photo = Photo.find(params[:id])
-    
+
     respond_to do |format|
       if @photo.update_attributes({ approved_at: Time.now })
         format.html { redirect_to root_path, notice: 'Photo was successfully approved.' }
@@ -189,13 +214,13 @@ class PhotosController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /photos/1/unapprove
   def unapprove
     redirect_to root_path, notice: "You must be logged in to unlike photos." if !current_user
-    
+
     @photo = Photo.find(params[:id])
-    
+
     respond_to do |format|
       if @photo.update_attributes({ approved_at: nil })
         format.html { redirect_to pending_path, notice: 'Photo was successfully unapproved.' }

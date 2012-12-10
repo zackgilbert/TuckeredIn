@@ -1,8 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title><%= content_for?(:title) ? yield(:title) : "Tuckered.In" %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body class="submit" style="padding: 0px; margin: 0px;">
 
   <div style="margin: auto;">
 
-    <h3 style="margin: 0px 20px 20px 0px;">Send Us Your Photos!</h3>
-    <p>We'd love your help contributing to the site! Whether it's your adorable pet after a hard day at the park, or something amazing you found on the internet, it doesn't matter! We want to see it. Use this form to send us your best stuff. If we like it, we'll post it on the site. The better the stuff you send us, the better the site gets.</p>
+    <h3 style="margin: 10px 0px 0px 20px;">Submit a Photo</h2>
 
     <%= form_for(@photo, :html => { :multipart => true, :class => 'form-horizontal' }) do |f| %>
       <% if @photo.errors.any? %>
@@ -17,36 +25,27 @@
         </div>
       <% end %>
 
-      <div id="upload-file" class="control-group">
-        <%= f.label :image, "Image File", :class => 'control-label' %>
-        <div class="controls">
-          <%= f.file_field :image %>
-          <p>(or <a href="javascript:;" onclick="$('#upload-file, #upload-url').toggle();">use a url</a>)</p>
-        </div>
-      </div>
-
-      <div id="upload-url" class="control-group" style="display:none;">
-        <%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :remote_image_url, :placeholder => "http://" %>
-          <p>(or <a href="javascript:;" onclick="$('#upload-file, #upload-url').toggle();">upload image</a>)</p>
-        </div>
-      </div>
-
-      <% if current_user %>
       <div>
         <%= f.hidden_field :user_id, :value => current_user.id %>
       </div>
+
+      <% if @from_cuddlet %>
+      <div class="control-group">
+        <%= f.label :remote_image_url, "Image URL", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :remote_image_url, :placeholder => "http://" %>
+          <p>(or <a href="/upload">upload image</a>)</p>
+        </div>
+      </div>
       <% else %>
       <div class="control-group">
-        <%= f.label :source_url, "Who are you?", :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_field :source_url, :placeholder => "Your @twitter or website" %>
+          <%= f.file_field :image %>
+          <p>(or <a href="/submit">use a url</a>)</p>
         </div>
       </div>
       <% end %>
 
-      <% if current_user && current_user.is_admin? %>
       <div class="control-group">
         <%= f.label :source_url, "Source URL", :class => 'control-label' %>
         <div class="controls">
@@ -61,6 +60,7 @@
         </div>
       </div>
 
+      <% if current_user.is_admin? %>
       <div class="control-group">
         <div class="controls">
           <label><input type="checkbox" name="photo[approved_at]" value="<%= Time.now %>"/> Approved</label>
@@ -70,9 +70,24 @@
 
       <div style="margin-left: 160px;">
         <%= f.submit "Submit", :class => 'btn btn-primary' %>
-        <a href="javascript:;" onclick="modal.modal('hide');" class="btn">Cancel</a>
+        <a href="javascript:;" onclick="window.close();" class="btn">Cancel</a>
       </div>
 
     <% end %>
 
   </div>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32824482-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+</body>
+</html>
