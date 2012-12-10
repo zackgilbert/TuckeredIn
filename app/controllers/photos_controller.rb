@@ -94,6 +94,31 @@ class PhotosController < ApplicationController
     end
   end
 
+  # POST /upload
+  # POST /upload.json
+  def upload
+    if (!params[:photo][:remote_image_url].blank?) && (!['.gif', '.png', '.jpg', '.jpeg'].include?(File.extname(params[:photo][:remote_image_url])))
+      # mail it to Zack!
+      redirect_to root_path, notice: "Sorry, but you must send us actual images."
+      return
+    end
+
+    @photo = Photo.new(params[:photo])
+    @photo.tag_list = params[:tags]
+
+    respond_to do |format|
+      #@photo.approved_at = Time.now if current_user.is_admin?
+
+      if @photo.save
+        format.html { redirect_to root_path, notice: 'Your photo was successfully submitted. Check back to see if it gets added!' }
+        format.json { render json: @photo, status: :created, location: @photo }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @photo.errors, notice: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /submit
   def submit
     if !current_user

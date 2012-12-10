@@ -6,5 +6,6 @@
 //= require bootstrap-modal-2.0.0
 //= require bootstrap-transition-2.0.0
 //= require bootstrap-tooltip-2.1.1
+//= require bootstrap-alert-2.2.2
 //= require jquery.bootbox
 //= require all

@@ -8,7 +8,7 @@ TuckeredIn::Application.routes.draw do
   match "/logout" => "sessions#destroy", :as => :signout
 
   get "/upload" => "photos#new", :as => 'upload'
-
+  post "/upload" => "photos#upload", :as => 'upload_photo'
   get "/submit" => "photos#submit", :as => 'new_photo'
   post "/submit" => "photos#create", :as => 'photos'
   get "/cuties/:id" => "photos#show", :as => "photo"
