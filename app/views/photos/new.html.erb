@@ -2,7 +2,8 @@
   <div style="margin: auto;">
 
     <h3 style="margin-bottom: 20px; text-align: center;">Send Us Your Photos!</h3>
-    <p>We'd love your help contributing to the site! Whether it's your adorable pet after a hard day at the park, or something amazing you found on the internet, it doesn't matter! We want to see it. Use this form to send us your best stuff. If we like it, we'll post it on the site. The better the stuff you send us, the better the site gets.</p>
+    <p>We'd love your help contributing to the site! Whether it's your adorable pet after a hard day at the park, or something amazing you found on the internet, <strong>we want to see it!</strong></p>
+    <p style="margin-bottom: 20px;">Use this form to send us your best stuff. If we like it, we'll post it on the site. The better the stuff you send us, the better the site gets. Please only submit .gif, .jpg or .png files.</p>
 
     <%= form_for(@photo, :url => upload_photo_path(@photo), :html => { :multipart => true, :class => 'form-horizontal' }) do |f| %>
       <% if @photo.errors.any? %>
