@@ -8,9 +8,9 @@ CarrierWave.configure do |config|
       :region                 => 'us-east-1'                          # optional, defaults to 'us-east-1'
     }
     config.fog_directory  = ENV['S3_BUCKET_NAME']                     # required
-    config.fog_host       = 'https://s3.amazonaws.com/tuckeredin'     #'http://www.tuckered.in'            # optional, defaults to nil
     config.fog_public     = true                                      # optional, defaults to true
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}    # optional, defaults to {}
+    config.asset_host     = 'https://s3.amazonaws.com/tuckeredin'     #'http://www.tuckered.in'            # optional, defaults to nil
 
     # non-fog way of storing with s3?
     config.root = Rails.root.join('tmp')
