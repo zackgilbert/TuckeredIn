@@ -57,9 +57,25 @@
 
     function stripeResponseHandler(status, response) {
       if (response.error) {
-        // Show the errors on the form
-        $('.payment-errors').text(response.error.message);
-        $('.submit-button').prop('disabled', false);
+        // re-enable the submit button
+        $('.submit-button').removeAttr("disabled");
+        // show the errors on the form
+        if (response.error.message == "This card number looks invalid") {
+          $('#paymentNumber').addClass('invalid');
+          $(".payment-errors").html("Please provide a valid card number.");
+        } else if (response.error.message == "You must provide an integer value for 'exp_month'.") {
+          $('#paymentExpiry').addClass('invalid');
+          $(".payment-errors").html("Please provide a proper expiration date MONTH & YEAR for your card.");
+        } else if (response.error.message == "You must provide an integer value for 'exp_year'.") {
+          $('#paymentExpiry').addClass('invalid');
+          $(".payment-errors").html("Please provide a proper expiration date MONTH & YEAR for your card.");
+        } else if (response.error.message == "Your card's security code is invalid") {
+          $('#paymentCVC').addClass('invalid');
+          $(".payment-errors").html("Your card's security code is invalid.");
+        } else {
+          $('#paymentCVC, #paymentName, #paymentNumber, #paymentExpiry').addClass('invalid');
+          $(".payment-errors").html(response.error.message);
+        }
       } else {
         var $form = $('#payment-form');
         // token contains id, last4, and card type
@@ -73,23 +89,39 @@
 
     $(function() {
       $('#payment-form').submit(function(event) {
+        $('input').removeClass('invalid');
+        $(".payment-errors").html('');
 
+        var empty_fields = [];
         // validate presence of all fields
+        if ($('#subscriberEmail').val() == '') empty_fields.push('subscriberEmail');
+        if ($('#paymentNumber').val() == '') empty_fields.push('paymentNumber');
+        if ($('#paymentCVC').val() == '') empty_fields.push('paymentCVC');
+        if ($('#paymentName').val() == '') empty_fields.push('paymentName');
+        if ($('#paymentExpiry').val() == '') empty_fields.push('paymentExpiry');
 
-        // Disable the submit button to prevent repeated clicks
-        $('.submit-button').prop('disabled', true);
+        if (empty_fields.length <= 0) {
+          // Disable the submit button to prevent repeated clicks
+          $('.submit-button').prop('disabled', true);
 
-        var expiry = $('#paymentExpiry').val().split("/");
+          var expiry = $('#paymentExpiry').val().split("/");
 
-        Stripe.createToken({
-          number: $('#paymentNumber').val(),
-          cvc: $('#paymentCVC').val(),
-          exp_month: expiry[0],
-          exp_year: expiry[1]
-        }, stripeResponseHandler);
-
-        // Prevent the form from submitting with the default action
-        return false;
+          Stripe.createToken({
+            number: $('#paymentNumber').val(),
+            cvc: $('#paymentCVC').val(),
+            name: $('#paymentName').val(),
+            exp_month: expiry[0],
+            exp_year: expiry[1]
+          }, stripeResponseHandler);
+          // Prevent the form from submitting with the default action
+          return false;
+        } else {
+          for (x in empty_fields) {
+            $('#' + empty_fields[x]).addClass('invalid');
+          }
+          $(".payment-errors").html("Looks like you forgot to enter some of the fields.");
+          return false;
+        }
       });
     });
   </script>
