@@ -69,7 +69,7 @@ $(function(){
     return false;
   });
 
-  $(".item a, .modal-nav a, #upload").live('click', function(e) {
+  $(".item a, .modal-nav a, #upload, #subscribe, #charges").live('click', function(e) {
     e.preventDefault();
     //console.log(this.href);
     var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
