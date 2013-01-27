@@ -101,27 +101,32 @@
         if ($('#paymentExpiry').val() == '') empty_fields.push('paymentExpiry');
 
         if (empty_fields.length <= 0) {
-          // Disable the submit button to prevent repeated clicks
-          $('.submit-button').prop('disabled', true);
 
-          var expiry = $('#paymentExpiry').val().split("/");
+          if ( /(.+)@(.+){2,}\.(.+){2,}/.test($('#subscriberEmail').val()) ) {
+            // Disable the submit button to prevent repeated clicks
+            $('.submit-button').prop('disabled', true);
 
-          Stripe.createToken({
-            number: $('#paymentNumber').val(),
-            cvc: $('#paymentCVC').val(),
-            name: $('#paymentName').val(),
-            exp_month: expiry[0],
-            exp_year: expiry[1]
-          }, stripeResponseHandler);
-          // Prevent the form from submitting with the default action
-          return false;
+            var expiry = $('#paymentExpiry').val().split("/");
+
+            Stripe.createToken({
+              number: $('#paymentNumber').val(),
+              cvc: $('#paymentCVC').val(),
+              name: $('#paymentName').val(),
+              exp_month: expiry[0],
+              exp_year: expiry[1]
+            }, stripeResponseHandler);
+          } else {
+            $('#subscriberEmail').addClass('invalid');
+            $(".payment-errors").html("We need a valid email to send cute sleepy animals to.");
+          }
         } else {
           for (x in empty_fields) {
             $('#' + empty_fields[x]).addClass('invalid');
           }
           $(".payment-errors").html("Looks like you forgot to enter some of the fields.");
-          return false;
         }
+        // Prevent the form from submitting with the default action
+        return false;
       });
     });
   </script>
