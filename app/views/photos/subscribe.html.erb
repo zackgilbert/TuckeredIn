@@ -1,0 +1,97 @@
+<div id="subscribe-container">
+
+  <h2>cute sleepy animals in your inbox EVERY DAY!</h2>
+  <h4 class="message payment-errors"><%= raw(flash[:alert]||'$5 of each subscription will be donated<br/>to the animal humane organization <a href="http://www.pawschicago.org/" target="_blank">PAWS</a>') %></h4>
+
+  <div class="panel">
+
+    <form novalidate="" action="/charge" autocomplete="on" method="post" id="payment-form">
+      <div class="yield">
+        <div class="payment">
+          <article>
+            <div class="message payment-errors"></div>
+
+            <div class="email">
+              <label for="subscriberEmail">Email:</label>
+              <input type="email" name="email" id="subscriberEmail"/>
+            </div>
+
+            <div class="number">
+              <label for="paymentNumber">Card number:</label>
+              <input type="text" id="paymentNumber" placeholder="●●●● ●●●● ●●●● ●●●●" data-placeholder="Card number" autocompletetype="cc-number" required="" data-numeric="">
+              <div class="placeholder"></div>
+              <div class="type"></div>
+            </div>
+
+            <div class="expiry">
+              <label for="paymentExpiry">Expires:</label>
+              <input type="text" id="paymentExpiry" placeholder="MM / YY" autocompletetype="cc-exp" maxlength="9" pattern="\d*" data-numeric="" required="">
+            </div>
+
+            <div class="name">
+              <label for="paymentName">Name on card:</label>
+              <input type="text" id="paymentName" data-placeholder="Name on card" autocompletetype="name" autocapitalize="words" autocorrect="off" spellcheck="off" required="">
+            </div>
+
+            <div class="cvc">
+              <label for="paymentCVC">Card code:</label>
+              <input type="text" id="paymentCVC" placeholder="CVC" autocompletetype="cc-csc" maxlength="4" pattern="\d*" autocomplete="off" data-numeric="" required="">
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button type="submit" class="blue submit-button"><span>Subscribe for $10.00/year</span></button>
+      </div>
+    </form>
+
+    <div class="success">
+      <div class="check"></div>
+    </div>
+  </div>
+
+  <script>
+
+    Stripe.setPublishableKey('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');
+
+    function stripeResponseHandler(status, response) {
+      if (response.error) {
+        // Show the errors on the form
+        $('.payment-errors').text(response.error.message);
+        $('.submit-button').prop('disabled', false);
+      } else {
+        var $form = $('#payment-form');
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and submit
+        //$form.get(0).submit();
+      }
+    }
+
+    $(function() {
+      $('#payment-form').submit(function(event) {
+
+        // validate presence of all fields
+
+        // Disable the submit button to prevent repeated clicks
+        $('.submit-button').prop('disabled', true);
+
+        var expiry = $('#paymentExpiry').val().split("/");
+
+        Stripe.createToken({
+          number: $('#paymentNumber').val(),
+          cvc: $('#paymentCVC').val(),
+          exp_month: expiry[0],
+          exp_year: expiry[1]
+        }, stripeResponseHandler);
+
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+  </script>
+
+</div>

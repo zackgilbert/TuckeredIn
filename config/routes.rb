@@ -20,9 +20,9 @@ TuckeredIn::Application.routes.draw do
   post "/photos/:id/like" => "photos#like", :as => "like_photo"
   delete "/photos/:id/unlike" => "photos#unlike", :as => "unlike_photo"
 
-  get "/subscribe" => "pages#subscribe", :as => 'subscribe'
-  post "/charge" => "pages#charge", :as => 'charge'
-  get "/charges" => "pages#charges", :as => 'charges'
+  get "/subscribe" => "photos#subscribe", :as => 'subscribe'
+  post "/charge" => "photos#charge", :as => 'charge'
+  get "/charges" => "photos#charges", :as => 'charges'
 
   get "/pending" => "photos#pending", :as => 'pending'
 

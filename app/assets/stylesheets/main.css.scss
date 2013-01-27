@@ -440,11 +440,11 @@ footer {
   h2 {
     font-family: 'Fredoka One', cursive;
     font-size: 40px;
-    line-height: 30px;
+    line-height: 40px;
     text-align: center;
     color: #ee4036;
     text-shadow: 0 1px 1px #fff, 0 -1px 1px #333;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   h3, h4 {
@@ -456,7 +456,7 @@ footer {
     text-align: center;
   }
   h4 {
-    font-size: 14px;
+    font-size: 18px;
 
     a {
       color: #ee4046;
@@ -493,7 +493,7 @@ footer {
         position: relative;
 
         input {
-          padding-right: 39px;
+          padding-right: 0px;
         }
 
         .placeholder,
@@ -503,9 +503,6 @@ footer {
           right: 6px;
           width: 32px;
           height: 20px;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-image: url("/assets/cards/placeholder.png");
           -webkit-transition: 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
           -moz-transition: 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
           transition: 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -576,16 +573,6 @@ footer {
         -webkit-font-smoothing: subpixel-antialiased;
         font-family: 'Helvetica Neue', Helvetica, Arial Geneva, sans-serif;
       }
-
-      .preloaded-images {
-        position: absolute;
-        overflow: hidden;
-        left: -9999px;
-        top: -9999px;
-        height: 1px;
-        width: 1px;
-        background: url("https://checkout.stripe.com/assets/cards/visa.png"), url("https://checkout.stripe.com/assets/cards/amex.png"), url("https://checkout.stripe.com/assets/cards/mastercard.png"), url("https://checkout.stripe.com/assets/cards/discover.png"), url("https://checkout.stripe.com/assets/cards/visa@2x.png"), url("https://checkout.stripe.com/assets/cards/amex@2x.png"), url("https://checkout.stripe.com/assets/cards/mastercard@2x.png"), url("https://checkout.stripe.com/assets/cards/discover@2x.png");
-      }
     }
   }
 
@@ -596,7 +583,7 @@ footer {
     overflow: hidden;
     border-top: 1px solid #ebeff2;
 
-    button.submit {
+    button.submit-button {
       position: relative;
       width: 300px;
       margin: auto;

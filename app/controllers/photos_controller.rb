@@ -53,7 +53,7 @@ class PhotosController < ApplicationController
 
       respond_to do |format|
         format.html { render action: :index }
-        format.json { render json: @photos }
+        format.json { render json: @photo }
       end
     end
   end
@@ -64,6 +64,53 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html { }#render layout: false } # show.html.erb
+    end
+  end
+
+  # FINISH!!!
+  # POST /charge
+  def charge
+=begin
+    @amount = 1000
+
+    customer = Stripe::Customer.create(
+      :email => params[:email],
+      :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @amount,
+      :description => 'Tuckered.In (1 Year)',
+      :currency    => 'usd'
+    )
+
+  rescue Stripe::CardError => e
+    flash[:alert] = e.message
+    redirect_to "/subscribe"
+=end
+    render :text => params.to_s
+  end
+
+  # BUILD OUT!
+  # GET /charges
+  def charges
+  end
+
+  # GET /subscribe
+  def subscribe
+    if request.xhr?
+      render :layout => false
+    else
+      @current_page = '1'
+      @next_page = 0
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
+      @next_page = @current_page.to_i+1 if @photos.length >= 25
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.json { render json: false }
+      end
     end
   end
 

@@ -153,8 +153,11 @@ function handleModal() {
       }
     });
   } else if (window.location.href.indexOf('/upload') > 0) {
-    //console.log('upload file.');
     $('#upload').click();
+  } else if (window.location.href.indexOf('/subscribe') > 0) {
+    $('#subscribe').click();
+  } else if (window.location.href.indexOf('/charges') > 0) {
+    $('#charges').click();
   } else {
     if (modal && modal.modal) {
       modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
