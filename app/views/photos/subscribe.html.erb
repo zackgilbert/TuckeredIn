@@ -86,6 +86,7 @@
         $form.append($('<input type="hidden" name="stripeToken" />').val(token));
         // and submit
         $form.get(0).submit();
+        $('.submit-button span').html('loading...');
       }
     }
 
@@ -105,6 +106,7 @@
         if (empty_fields.length <= 0) {
 
           if ( /(.+)@(.+){2,}\.(.+){2,}/.test($('#subscriberEmail').val()) ) {
+            $(".payment-errors").html("Thanks! One sec while we valid and submit your info.");
             // Disable the submit button to prevent repeated clicks
             $('.submit-button').prop('disabled', true);
 
