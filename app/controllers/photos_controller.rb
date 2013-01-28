@@ -70,7 +70,6 @@ class PhotosController < ApplicationController
   # FINISH!!!
   # POST /charge
   def charge
-=begin
     @amount = 1000
 
     customer = Stripe::Customer.create(
@@ -84,12 +83,12 @@ class PhotosController < ApplicationController
       :description => 'Tuckered.In (1 Year)',
       :currency    => 'usd'
     )
+    flash[:notice] = "Thanks for subscribing! You should receive a confirmation email in a few minutes."
+    redirect_to root_path
 
   rescue Stripe::CardError => e
     flash[:alert] = e.message
     redirect_to "/subscribe"
-=end
-    render :text => params.to_s
   end
 
   # BUILD OUT!
