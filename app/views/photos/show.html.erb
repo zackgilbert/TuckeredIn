@@ -5,11 +5,11 @@
     </div>
     <% if @photo.source_url.present? %>
       <% if @photo.source_url[0] == "@" %>
-    <p>via <a href="http://twitter.com/<%= @photo.source_url %>"><%= @photo.source_url %></a></p>
+    <p>via <a href="http://twitter.com/<%= @photo.source_url %>" target="_blank"><%= @photo.source_url %></a></p>
       <% elsif @photo.source_url[0..6] == 'http://' %>
-    <p>via <a href="<%= @photo.source_url %>"><%= @photo.source_url.split("/")[2] %></a></p>
+    <p>via <a href="<%= @photo.source_url %>" target="_blank"><%= @photo.source_url.split("/")[2] %></a></p>
       <% else %>
-    <p>via <a href="<%= @photo.source_url %>"><%= @photo.source_url %></a></p>
+    <p>via <a href="<%= @photo.source_url %>" target="_blank"><%= @photo.source_url %></a></p>
       <% end %>
     <% end %>
     <div class="social-container">
