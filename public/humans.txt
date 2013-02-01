@@ -1,29 +1,29 @@
 /* TEAM */
-	
-	Developer: Zack Gilbert                             
-	Contact: zackgilbert@gmail.com
-	Twitter: @zackgilbert
-	From: Chicago, IL, USA
 
-	Designer: Becky Rother
-	Twitter: @beckyrother
-	From: Chicago, IL, USA
-							
+  Developer: Zack Gilbert
+  Contact: zackgilbert@gmail.com
+  Twitter: @zackgilbert
+  From: Chicago, IL, USA
+
+  Designer: Becky Rother
+  Twitter: @beckyrother
+  From: Chicago, IL, USA
+
 /* THANKS */
-	
-	Kelsey Kreiling
-	Twitter: @kelseylk
-	From: Chicago, IL, USA
-	    
+
+  Kelsey Kreiling
+  Twitter: @kelseylk
+  From: Chicago, IL, USA
+
 /* SITE */
 
-	URL: http://www.tuckered.in
-	Facebook: https://www.facebook.com/pages/TuckeredIn/391252914267589
-	Twitter: @tuckeredin
-	
-	Last update: 2012-10-22 
-	Standards: HTML5, CSS3
-	Components: HTML5 Boilerplate, Modernizr, jQuery, Ruby on Rails, Bootstrap
-	Software: Ruby on Rails, MySQL
-	Hosting: Heroku, AWS
-	IDE: TextMate
+  URL: http://www.tuckered.in
+  Facebook: https://www.facebook.com/tuckeredin
+  Twitter: @tuckeredin
+
+  Last update: 2012-10-22
+  Standards: HTML5, CSS3
+  Components: HTML5 Boilerplate, Modernizr, jQuery, Ruby on Rails, Bootstrap
+  Software: Ruby on Rails, MySQL
+  Hosting: Heroku, AWS
+  IDE: TextMate

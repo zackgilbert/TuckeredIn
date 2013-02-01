@@ -69,7 +69,7 @@ $(function(){
     return false;
   });
 
-  $(".item a, .modal-nav a, #upload, #subscribe, #charges").live('click', function(e) {
+  $(".item a, .modal-nav a, #upload, #subscribe, #charges, #thankyou").live('click', function(e) {
     e.preventDefault();
     //console.log(this.href);
     var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
@@ -154,6 +154,8 @@ function handleModal() {
     });
   } else if (window.location.href.indexOf('/upload') > 0) {
     $('#upload').click();
+  } else if (window.location.href.indexOf('/thankyou') > 0) {
+    $('#thankyou').click();
   } else if (window.location.href.indexOf('/subscribe') > 0) {
     $('#subscribe').click();
   } else if (window.location.href.indexOf('/charges') > 0) {

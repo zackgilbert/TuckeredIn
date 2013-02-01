@@ -21,6 +21,7 @@ TuckeredIn::Application.routes.draw do
   delete "/photos/:id/unlike" => "photos#unlike", :as => "unlike_photo"
 
   get "/subscribe" => "photos#subscribe", :as => 'subscribe'
+  get "/thankyou" => "photos#thankyou", :as => 'thankyou'
   post "/charge" => "photos#charge", :as => 'charge'
   get "/charges" => "photos#charges", :as => 'charges'
 

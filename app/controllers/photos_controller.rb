@@ -84,20 +84,50 @@ class PhotosController < ApplicationController
       :currency    => 'usd'
     )
     flash[:notice] = "Thanks for subscribing! You should receive a confirmation email in a few minutes."
-    redirect_to root_path
+    redirect_to thankyou_path
 
   rescue Stripe::CardError => e
     flash[:alert] = e.message
-    redirect_to "/subscribe"
+    redirect_to subscribe_path
   end
 
   # BUILD OUT!
   # GET /charges
   def charges
+    if request.xhr?
+      render :layout => false
+    else
+      @current_page = '1'
+      @next_page = 0
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
+      @next_page = @current_page.to_i+1 if @photos.length >= 25
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.json { render json: false }
+      end
+    end
   end
 
   # GET /subscribe
   def subscribe
+    if request.xhr?
+      render :layout => false
+    else
+      @current_page = '1'
+      @next_page = 0
+      @photos = Photo.where("approved_at IS NOT NULL").order("approved_at DESC").page @current_page
+      @next_page = @current_page.to_i+1 if @photos.length >= 25
+
+      respond_to do |format|
+        format.html { render action: :index }
+        format.json { render json: false }
+      end
+    end
+  end
+
+  # GET /thankyou
+  def thankyou
     if request.xhr?
       render :layout => false
     else
