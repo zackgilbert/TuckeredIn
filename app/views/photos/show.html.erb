@@ -21,7 +21,7 @@
         </li>
         <li><a href="https://www.facebook.com/dialog/feed?app_id=478208585544625&amp;link=http://www.tuckered.in/cuties/<%= @photo.id %>&amp;picture=<%= @photo.image_url %>&amp;name=Tuckered.In - It's just so cute!&amp;redirect_uri=http://www.tuckered.in/" id="facebook" rel="tooltip" title="Share this on Facebook"></a></li>
         <!--<li><a href="mailto:contact@tuckered.in" id="email" rel="tooltip" title="Email this to a friend"></a></li>-->
-        <% else %>
+        <% elsif current_user && current_user.is_admin? %>
         <li><%= link_to '', approve_photo_path(@photo), confirm: 'Are you sure?', method: :post, :id => "heart", :rel => "tooltip", :title => "Approve this cutie!" %></li>
         <li><%= link_to 'Delete', delete_photo_path(@photo), confirm: 'Are you sure?', method: :delete, :rel => "tooltip", :title => "Delete from site!" %></li>
         <% end %>
