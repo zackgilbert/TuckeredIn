@@ -69,7 +69,7 @@ $(function(){
     return false;
   });
 
-  $(".item a, .modal-nav a, #upload, #subscribe, #charges, #thankyou").live('click', function(e) {
+  $(".item a, .modal-nav a, #upload").live('click', function(e) {
     e.preventDefault();
     //console.log(this.href);
     var str = $('<img src="/images/loading.gif" class="modal-loading" title="loading..." alt="loading..."/>');
@@ -155,11 +155,14 @@ function handleModal() {
   } else if (window.location.href.indexOf('/upload') > 0) {
     $('#upload').click();
   } else if (window.location.href.indexOf('/thankyou') > 0) {
-    $('#thankyou').click();
+    //$('#thankyou').click();
+    window.location = "/";
   } else if (window.location.href.indexOf('/subscribe') > 0) {
-    $('#subscribe').click();
+    //$('#subscribe').click();
+    window.location = "/";
   } else if (window.location.href.indexOf('/charges') > 0) {
-    $('#charges').click();
+    //$('#charges').click();
+    window.location = "/";
   } else {
     if (modal && modal.modal) {
       modal.unbind("hidden"); // cancel already potentially existing hide callback, so we don't add an additional /home to history
